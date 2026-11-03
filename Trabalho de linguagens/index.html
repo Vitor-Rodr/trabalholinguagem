@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Banquete Guloso</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial Black', Impact, sans-serif;
+    }
+
+    body {
+      background-color: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Vídeo de fundo */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Camada escura pro vídeo de fundo não ficar muito claro/estourado */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(17, 17, 17, 0.6);
+      z-index: -1;
+    }
+
+    /* navbar coisado cm estilo */
+    header {
+      width: 100%;
+      background-color: rgba(17, 17, 17, 0.8); /* Fundo semi-transparente na navbar  */
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid #222222;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+    }
+
+    .nav-menu a {
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #ffffff;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-nav-action {
+      background-color: #ff4655;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-nav-action:hover {
+      background-color: #e03e4d;
+    }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 70px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .hero-subtitle {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #dddddd;
+      text-transform: uppercase;
+    }
+
+    .btn-hero-container {
+      margin-top: 15px;
+      padding: 4px;
+      border: 1px solid #ffffff;
+      display: inline-block;
+    }
+
+    .btn-hero {
+      background-color: #ff4655;
+      color: #ffffff;
+      padding: 16px 40px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-hero:hover {
+      background-color: #ffffff;
+      color: #111111;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vídeo de Fundo e Overlay -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="Fat_man_eating_clues_81ca53f2.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo">
+          <img src="logo certa.png" alt="Logo" class="logo-img">
+          <span>o banquete guloso</span>
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="informacoes.html">Informações</a></li>
+          <li><a href="midia.html">Mídia</a></li>
+          <li><a href="noticias.html">Notícias</a></li>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="social.html">Social</a></li>
+          <li><a href="esports.html">Esports</a></li>
+          <li><a href="#">Comunidade</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <button class="btn-nav-action">Jogue Agora</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">O BANQUETE GULOSO</h1>
+      <p class="hero-subtitle">Você vai ter essa coragem?</p>
+      
+      <div class="btn-hero-container">
+        <button class="btn-hero">Jogue agora</button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

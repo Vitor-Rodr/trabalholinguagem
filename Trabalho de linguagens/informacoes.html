@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informações - Fuja do Vítor</title>
+  <style>
+    /* Reset básico e tipografia */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial Black', Impact, sans-serif;
+    }
+
+    body {
+      background-color: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar Superior */
+    header {
+      width: 100%;
+      background-color: #111111;
+      border-bottom: 1px solid #222222;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+    }
+
+    .nav-menu a {
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: #ffffff;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-nav-action {
+      background-color: #ff4655;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-nav-action:hover {
+      background-color: #e03e4d;
+    }
+
+    /* Seção Hero Central - Conteúdo de Informações */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+      padding-bottom: 50px;
+    }
+
+    .info-content {
+      max-width: 900px;
+      width: 100%;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-left: 5px solid #ff4655;
+      padding-left: 15px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      background-color: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      padding: 24px;
+      border-radius: 4px;
+    }
+
+    .info-card h2 {
+      font-size: 1.3rem;
+      letter-spacing: 1.5px;
+      color: #ff4655;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .info-card p {
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cccccc;
+      font-weight: normal;
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (Idêntica à página inicial) -->
+  <header>
+    <div class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo">
+          <img src="logo.webp" alt="Logo" class="logo-img">
+          <span>Fuja do vítor</span>
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="informacoes.html" class="active">Informações</a></li>
+          <li><a href="midia.html">Mídia</a></li>
+          <li><a href="noticias.html">Notícias</a></li>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="social.html">Social</a></li>
+          <li><a href="esports.html">Esports</a></li>
+          <li><a href="#">Comunidade</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <button class="btn-nav-action">Jogue Agora</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção de Conteúdo da Página Informações -->
+  <section class="hero-section">
+    <div class="info-content">
+      <h1 class="page-title">INFORMAÇÕES DO JOGO</h1>
+      
+      <div class="info-grid">
+        <div class="info-card">
+          <h2>SOBRE O JOGO</h2>
+          <p>Fuja do Vítor é um jogo de sobrevivência e suspense em primeira pessoa onde seu único objetivo é escapar antes que o Vítor te encontre. Resolva enigmas, encontre chaves e corra contra o tempo.</p>
+        </div>
+
+        <div class="info-card">
+          <h2>COMO JOGAR</h2>
+          <p>Explore as salas com cuidado. Use as teclas W, A, S, D para se movimentar, Shift para correr e a tecla E para interagir com objetos e portas.</p>
+        </div>
+
+        <div class="info-card">
+          <h2>REQUISITOS MÍNIMOS</h2>
+          <p>Navegador moderno com suporte a HTML5 / WebGL, 4GB de RAM e conexão com a internet para carregar os recursos do jogo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
