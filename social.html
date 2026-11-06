@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social - O Banquete Guloso</title>
+  <style>
+    /* Reset básico e tipografia */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial Black', Impact, sans-serif;
+    }
+
+    body {
+      background-color: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar Superior */
+    header {
+      width: 100%;
+      background-color: #111111;
+      border-bottom: 1px solid #222222;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+    }
+
+    .nav-menu a {
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: #ffffff;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-nav-action {
+      background-color: #ff4655;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-nav-action:hover {
+      background-color: #e03e4d;
+    }
+
+    /* Seção Principal */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+      padding-bottom: 50px;
+    }
+
+    .social-container {
+      max-width: 900px;
+      width: 100%;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .page-title {
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-left: 5px solid #ff4655;
+      padding-left: 15px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .social-card {
+      background-color: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      padding: 30px 24px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 15px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-card:hover {
+      border-color: #ff4655;
+      transform: translateY(-4px);
+    }
+
+    .social-icon {
+      font-size: 2.5rem;
+      margin-bottom: 5px;
+    }
+
+    .social-card h2 {
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
+      color: #ff4655;
+      text-transform: uppercase;
+    }
+
+    .social-card p {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #cccccc;
+      line-height: 1.4;
+    }
+
+    .social-link-btn {
+      margin-top: 10px;
+      background-color: #ff4655;
+      color: #ffffff;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .social-link-btn:hover {
+      background-color: #e03e4d;
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .nav-menu {
+        display: none;
+      }
+      .page-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo">
+          <img src="logo.webp" alt="Logo" class="logo-img">
+          <span>O BANQUETE GULOSO</span>
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="informacoes.html">Informações</a></li>
+          <li><a href="midia.html">Mídia</a></li>
+          <li><a href="noticias.html">Notícias</a></li>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="social.html" class="active">Social</a></li>
+          <li><a href="esports.html">Esports</a></li>
+          <li><a href="#">Comunidade</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <button class="btn-nav-action">Jogue Agora</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção Social -->
+  <section class="hero-section">
+    <div class="social-container">
+      <h1 class="page-title">REDES SOCIAIS E CONTATO</h1>
+      
+      <div class="social-grid">
+        
+        <!-- Instagram -->
+        <div class="social-card">
+          <div class="social-icon">📸</div>
+          <h2>Instagram</h2>
+          <p>Acompanha os bastidores do desenvolvimento, novidades e atualizações em tempo real.</p>
+          <a href="https://instagram.com/v.samuell_" target="_blank" class="social-link-btn">SEGUIR NO INSTA</a>
+        </div>
+
+        <!-- GitHub / Portfólio -->
+        <div class="social-card">
+          <div class="social-icon">💻</div>
+          <h2>GitHub</h2>
+          <p>Vê o código-fonte, os repositórios e os outros projetos do desenvolvedor.</p>
+          <a href="https://github.com/Vitol-Rodrr" target="_blank" class="social-link-btn">VER GITHUB</a>
+        </div>
+
+        <!-- Contato / E-mail -->
+        <div class="social-card">
+          <div class="social-icon">✉️</div>
+          <h2>Contato</h2>
+          <p>Tens alguma dúvida, sugestão ou proposta? Entra em contacto direto por e-mail.</p>
+          <a href="mailto:teu-email@exemplo.com" class="social-link-btn">ENVIAR E-MAIL</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
