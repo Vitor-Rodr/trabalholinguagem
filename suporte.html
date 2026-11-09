@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte - O Banquete Guloso</title>
+  <link rel="icon" href="assets/images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/suporte.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/images/logo.png" alt="Logo O Banquete Guloso" class="logo-img">
+          <span>O Banquete Guloso</span>
+        </a>
+
+        <ul class="nav-menu" id="menu">
+          <li><a href="historia.html">História</a></li>
+          <li><a href="informacoes.html">Informações</a></li>
+          <li><a href="midia.html">Mídia</a></li>
+          <li><a href="suporte.html" class="active" aria-current="page">Suporte</a></li>
+          <li><a href="social.html">Social</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <a href="informacoes.html" class="btn-nav-action">Jogue Agora</a>
+        <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">&#9776;</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="page-container">
+      <h1 class="page-title">Central de suporte</h1>
+
+      <div class="card-grid">
+        <div class="card">
+          <h2>Problemas técnicos</h2>
+          <p>Encontrou um erro visual, travamento ou bug durante a fuga? Relate para a nossa equipa corrigir o mais rápido possível.</p>
+          <button type="button" class="support-btn" data-abrir-modal>Reportar bug</button>
+        </div>
+
+        <div class="card">
+          <h2>Perguntas frequentes</h2>
+          <p>Tire as suas dúvidas sobre controlos, desempenho, compatibilidade de navegadores e contas de jogador.</p>
+          <button type="button" class="support-btn" id="btnFaq">Ver FAQ</button>
+        </div>
+
+        <div class="card">
+          <h2>Fale conosco</h2>
+          <p>Precisa de ajuda direta? Envie-nos uma mensagem diretamente para o suporte técnico do jogo.</p>
+          <button type="button" class="support-btn" data-abrir-modal>Enviar mensagem</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="modalBug">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="modal-header">
+        <h3 id="modalTitulo">Reportar Bug / Enviar Mensagem</h3>
+        <button type="button" class="close-btn" aria-label="Fechar">&times;</button>
+      </div>
+
+      <form action="https://formspree.io/f/xwllddwb" method="POST" class="modal-form">
+        <div class="form-group">
+          <label for="email">O seu E-mail:</label>
+          <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="mensagem">Descreva o problema / mensagem:</label>
+          <textarea id="mensagem" name="mensagem" required placeholder="O que aconteceu no jogo?"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar agora</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/suporte.js"></script>
+</body>
+</html>

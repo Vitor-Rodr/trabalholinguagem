@@ -1,0 +1,307 @@
+/* ==========================================================
+   O Banquete Guloso — estilos globais
+  1) base 
+  2) fundo em vídeo 
+  3) navbar 
+  4) botões
+  5) layout das páginas 
+  6) cards 
+  7) responsivo
+   ========================================================== */
+
+/* 1) Base ---------------------------------------------------- */
+:root {
+  --cor-fundo: #111111;
+  --cor-card: #1a1a1a;
+  --cor-borda: #2a2a2a;
+  --cor-destaque: #ff4655;
+  --cor-destaque-hover: #e03e4d;
+  --cor-texto: #ffffff;
+  --cor-texto-suave: #cccccc;
+  --cor-menu: #bbbbbb;
+  --altura-navbar: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial Black', Impact, sans-serif;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* 2) Fundo em vídeo (index e história) ----------------------- */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.6);
+  z-index: -1;
+}
+
+.video-overlay.escuro {
+  background-color: rgba(11, 11, 11, 0.85);
+}
+
+/* 3) Navbar -------------------------------------------------- */
+header {
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #222222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.navbar {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: var(--altura-navbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+}
+
+.nav-menu a {
+  color: var(--cor-menu);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--cor-texto);
+}
+
+.nav-menu a.active {
+  border-bottom-color: var(--cor-destaque);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Botão hambúrguer (aparece só no celular) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: var(--cor-texto);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* 4) Botões -------------------------------------------------- */
+.btn-nav-action,
+.btn-hero,
+.social-link-btn,
+.submit-btn {
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+  border: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-nav-action {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+}
+
+.btn-nav-action:hover,
+.social-link-btn:hover,
+.submit-btn:hover {
+  background-color: var(--cor-destaque-hover);
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.btn-hero:hover {
+  background-color: #ffffff;
+  color: var(--cor-fundo);
+  transform: translateY(-2px);
+}
+
+/* 5) Layout das páginas internas ----------------------------- */
+.hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--altura-navbar) + 30px) 0 50px;
+}
+
+.page-container {
+  max-width: 900px;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.page-container.largo {
+  max-width: 1300px;
+}
+
+.page-title {
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-left: 5px solid var(--cor-destaque);
+  padding-left: 15px;
+}
+
+/* 6) Cards --------------------------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  padding: 24px;
+  border-radius: 4px;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  color: var(--cor-destaque);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.card p {
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+  font-weight: normal;
+}
+
+/* 7) Responsivo ---------------------------------------------- */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-left {
+    gap: 0;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: var(--altura-navbar);
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    background-color: rgba(17, 17, 17, 0.98);
+    border-bottom: 1px solid #222222;
+  }
+
+  .nav-menu.aberto {
+    display: flex;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 16px 24px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  .nav-menu a.active {
+    border-left: 4px solid var(--cor-destaque);
+  }
+
+  .nav-right {
+    margin-left: auto;
+  }
+
+  .brand-logo span {
+    display: none;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+}
