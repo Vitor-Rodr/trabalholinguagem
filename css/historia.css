@@ -1,48 +1,5 @@
-/* Página inicial (index) e História */
+/* Página História: duas colunas (texto + imagem) */
 
-/* ---- Index: hero centralizado ---- */
-.hero-centro {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: var(--altura-navbar);
-  text-align: center;
-}
-
-.hero-content {
-  max-width: 800px;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.hero-title {
-  font-size: 4rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.hero-subtitle {
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #dddddd;
-  text-transform: uppercase;
-}
-
-.btn-hero-container {
-  margin-top: 15px;
-  padding: 4px;
-  border: 1px solid #ffffff;
-  display: inline-block;
-}
-
-/* ---- História: duas colunas ---- */
 .hero-historia {
   flex: 1;
   display: flex;
@@ -79,19 +36,19 @@
   width: fit-content;
 }
 
-.hero-historia .hero-title {
+.hero-title {
   font-size: 3.5rem;
   letter-spacing: 3px;
   line-height: 1.1;
+  text-transform: uppercase;
 }
 
-.hero-historia .hero-subtitle {
+.hero-subtitle {
+  font-family: Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--cor-texto-suave);
   font-weight: normal;
-  letter-spacing: normal;
-  text-transform: none;
   max-width: 540px;
 }
 
@@ -137,13 +94,7 @@
     justify-content: center;
   }
 
-  .hero-historia .hero-title {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 600px) {
   .hero-title {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 }

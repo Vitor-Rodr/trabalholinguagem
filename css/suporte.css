@@ -1,24 +1,7 @@
-/* Página Suporte: botões dos cards e modal do formulário */
+/* Página Suporte: modal do formulário */
 
 .card p {
   margin-bottom: 15px;
-}
-
-.support-btn {
-  background-color: transparent;
-  border: 1px solid var(--cor-destaque);
-  color: #ffffff;
-  padding: 10px 18px;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.support-btn:hover {
-  background-color: var(--cor-destaque);
 }
 
 .modal-overlay {
