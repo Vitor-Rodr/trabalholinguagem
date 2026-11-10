@@ -41,6 +41,13 @@
   display: inline-block;
 }
 
+.hero-title {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700; /* Podes ajustar o peso de 400 a 700 conforme preferires */
+  font-style: normal;
+}
+
 @media (max-width: 600px) {
   .hero-title {
     font-size: 2.4rem;
