@@ -1,0 +1,39 @@
+/* Página Como jogar: manual de sobrevivência e lista de comandos */
+
+.page-container.como-jogar {
+  max-width: 1000px;
+  gap: 40px;
+}
+
+.card.borda-topo {
+  border-top: 4px solid var(--cor-destaque);
+}
+
+.control-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.control-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cor-fundo);
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--cor-borda);
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+}
+
+.control-key {
+  background-color: var(--cor-borda);
+  color: var(--cor-destaque);
+  border: 1px solid var(--cor-destaque);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-family: monospace;
+}
