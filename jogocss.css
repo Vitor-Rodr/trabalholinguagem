@@ -64,22 +64,18 @@
     border: 0;
     background: transparent;
     cursor: pointer;
-  
- /*contorno portas (apagar dps)*/
-    outline: 2px dashed #fff;
-    background: rgba(255, 255, 255, 0.15);
   }
   
-  #porta-hall-quarto { left: 79%; top: 20%; width: 13%; height: 60%; }/*arrumada*/
-  #porta-quarto-hall { left: 40%; top: 20%; width: 18%; height: 60%; }/*arrumada*/
-  #porta-quarto-banheiro { left: 40%; top: 20%; width: 18%; height: 60%; }/*arrumada*/
-  #porta-banheiro-quarto { left: 0%; top: 5%; width: 9%; height: 95%; }/*arrumada*/
-  #porta-hall-cozinha { left: 40%; top: 20%; width: 20%; height: 60%; }/*arrumada*/
-  #porta-cozinha-hall { left: 40%; top: 30%; width: 15%; height: 50%; }
-  #porta-cozinha-salaJantar { left: 61%; top: 15%; width: 21%; height: 65%; }/*arrumada*/
-  #porta-salaJantar-cozinha { left: 40%; top: 30%; width: 15%; height: 50%; }
-  #porta-salaJantar-calabouco { left: 78%; top: 20%; width: 13%; height: 60%; }/*arrumada*/
-  #porta-calabouco-salaJantar { left: 40%; top: 30%; width: 15%; height: 50%; }
+  #porta-hall-quarto { left: 79%; top: 20%; width: 13%; height: 60%; }
+  #porta-quarto-hall { left: 47%; top: 20%; width: 21%; height: 60%; }
+  #porta-quarto-banheiro { left: 40%; top: 20%; width: 18%; height: 60%; }
+  #porta-banheiro-quarto { left: 0%; top: 5%; width: 9%; height: 95%; }
+  #porta-hall-cozinha { left: 40%; top: 20%; width: 20%; height: 60%; }
+  #porta-cozinha-hall { left: 40%; top: 20%; width: 20%; height: 60%; }
+  #porta-cozinha-salaJantar { left: 61%; top: 15%; width: 21%; height: 65%; }
+  #porta-salaJantar-cozinha { left: 40%; top: 20%; width: 20%; height: 60%; }
+  #porta-salaJantar-calabouco { left: 78%; top: 20%; width: 13%; height: 60%; }
+  #porta-calabouco-salaJantar { left: 20%; top: 20%; width: 20%; height: 60%; }
   
 
   #cena[data-vista="hall-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 1.1.png"); }
@@ -96,9 +92,12 @@
   #cena[data-vista="cozinha-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.1.png"); }
   #cena[data-vista="cozinha-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.2.png"); }
   #cena[data-vista="cozinha-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.3.png"); }
+  #cena[data-vista="cozinha-3"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.4.png"); }
  
   #cena[data-vista="salaJantar-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.1.png"); }
   #cena[data-vista="salaJantar-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.2.png"); }
   #cena[data-vista="salaJantar-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.3.png"); }
+  #cena[data-vista="salaJantar-3"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.4.png"); }
  
-  #cena[data-vista="calabouco-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 6.png"); }
+  #cena[data-vista="calabouco-0"] { background-image: url("./assets/images/cenarios-jogo/Imagem\ 6.1.png"); }
+  #cena[data-vista="calabouco-1"] { background-image: url("./assets/images/cenarios-jogo/Imagem\ 6.2.png"); }
