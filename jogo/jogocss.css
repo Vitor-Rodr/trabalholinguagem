@@ -50,12 +50,12 @@
   
   #esq {
     left: 10px;
-    background-image: url("./assets/images/setaesquerda.png");
+    background-image: url("../assets/images/setaesquerda.png");
   }
   
   #dir {
     right: 10px;
-    background-image: url("./assets/images/setadireita.png");
+    background-image: url("../assets/images/setadireita.png");
   }
   
   .porta {
@@ -78,26 +78,26 @@
   #porta-calabouco-salaJantar { left: 20%; top: 20%; width: 20%; height: 60%; }
   
 
-  #cena[data-vista="hall-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 1.1.png"); }
-  #cena[data-vista="hall-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 1.2.png"); }
-  #cena[data-vista="hall-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 1.3.png"); }
+  #cena[data-vista="hall-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 1.1.png"); }
+  #cena[data-vista="hall-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 1.2.png"); }
+  #cena[data-vista="hall-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 1.3.png"); }
  
-  #cena[data-vista="quarto-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 2.1.png"); }
-  #cena[data-vista="quarto-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 2.2.png"); }
-  #cena[data-vista="quarto-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 2.3.png"); }
-  #cena[data-vista="quarto-3"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 2.4.png"); }
+  #cena[data-vista="quarto-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.1.png"); }
+  #cena[data-vista="quarto-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.2.png"); }
+  #cena[data-vista="quarto-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.3.png"); }
+  #cena[data-vista="quarto-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.4.png"); }
 
-  #cena[data-vista="banheiro-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 3.png"); }
+  #cena[data-vista="banheiro-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 3.png"); }
  
-  #cena[data-vista="cozinha-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.1.png"); }
-  #cena[data-vista="cozinha-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.2.png"); }
-  #cena[data-vista="cozinha-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.3.png"); }
-  #cena[data-vista="cozinha-3"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 4.4.png"); }
+  #cena[data-vista="cozinha-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.1.png"); }
+  #cena[data-vista="cozinha-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.2.png"); }
+  #cena[data-vista="cozinha-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.3.png"); }
+  #cena[data-vista="cozinha-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.4.png"); }
  
-  #cena[data-vista="salaJantar-0"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.1.png"); }
-  #cena[data-vista="salaJantar-1"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.2.png"); }
-  #cena[data-vista="salaJantar-2"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.3.png"); }
-  #cena[data-vista="salaJantar-3"] { background-image: url("./assets/images/cenarios-jogo/imagem\ 5.4.png"); }
+  #cena[data-vista="salaJantar-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.1.png"); }
+  #cena[data-vista="salaJantar-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.2.png"); }
+  #cena[data-vista="salaJantar-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.3.png"); }
+  #cena[data-vista="salaJantar-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.4.png"); }
  
-  #cena[data-vista="calabouco-0"] { background-image: url("./assets/images/cenarios-jogo/Imagem\ 6.1.png"); }
-  #cena[data-vista="calabouco-1"] { background-image: url("./assets/images/cenarios-jogo/Imagem\ 6.2.png"); }
+  #cena[data-vista="calabouco-0"] { background-image: url("../assets/images/cenarios-jogo/Imagem\ 6.1.png"); }
+  #cena[data-vista="calabouco-1"] { background-image: url("../assets/images/cenarios-jogo/Imagem\ 6.2.png"); }
