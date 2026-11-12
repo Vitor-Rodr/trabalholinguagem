@@ -9,7 +9,6 @@
    4) botões
    5) layout das páginas
    6) cards
-   7) responsivo
    ========================================================== */
 
 /* 1) Base ---------------------------------------------------- */
@@ -287,57 +286,4 @@ header {
   line-height: 1.6;
   color: var(--cor-texto-suave);
   font-weight: normal;
-}
-
-/* 7) Responsivo ---------------------------------------------- */
-/* Menu vira hambúrguer em telas de até 1500px (8 links + marca não cabem em linha).
-   Para mudar o ponto de quebra, altere só este valor. */
-@media (max-width: 1500px) {
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav-left {
-    gap: 0;
-  }
-
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: var(--altura-navbar);
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    gap: 0;
-    background-color: rgba(17, 17, 17, 0.98);
-    border-bottom: 1px solid #222222;
-  }
-
-  .nav-menu.aberto {
-    display: flex;
-  }
-
-  .nav-menu a {
-    display: block;
-    padding: 16px 24px;
-    border-bottom: 1px solid #1f1f1f;
-  }
-
-  .nav-menu a.active {
-    border-left: 4px solid var(--cor-destaque);
-  }
-
-  .nav-right {
-    margin-left: auto;
-  }
-}
-
-@media (max-width: 900px) {
-  .brand-logo span {
-    display: none;
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
 }
