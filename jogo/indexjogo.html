@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="jogocss.css">
 </head>
 <body>
-
   <div id="cena">
     
     <button class="seta" id="esq" aria-label="Girar para a esquerda"></button>
     <button class="seta" id="dir" aria-label="Girar para a direita"></button>
     
+    <!-- Portas -->
     <button class="porta" id="porta-hall-quarto" data-aqui="hall-2" data-para="quarto-0"></button>
     <button class="porta" id="porta-quarto-hall" data-aqui="quarto-3" data-para="hall-2"></button>
     <button class="porta" id="porta-quarto-banheiro" data-aqui="quarto-1" data-para="banheiro-0"></button>
@@ -23,9 +23,49 @@
     <button class="porta" id="porta-salaJantar-cozinha" data-aqui="salaJantar-3" data-para="cozinha-2"></button>
     <button class="porta" id="porta-salaJantar-calabouco" data-aqui="salaJantar-2" data-para="calabouco-0"></button>
     <button class="porta" id="porta-calabouco-salaJantar" data-aqui="calabouco-1" data-para="salaJantar-2"></button>
+
+    <!-- ========================================== -->
+    <!-- ESPAÇO 1: COM SETAS E SEM BOTÃO VOLTAR     -->
+    <!-- (Clica para alterar, clica de novo volta)  -->
+    <!-- ========================================== -->
+    <button class="interativo-cena" id="tapetevirado" data-aqui="hall-0" data-alterado="hall-0-tapete"></button>
+    <button class="interativo-cena" id="gavetainutil" data-aqui="hall-0" data-alterado="hall-0-inutil"></button>  
+    <button class="interativo-cena" id="armarioinutil" data-aqui="quarto-0" data-alterado="quarto-0-armario"></button>  
+    <button class="interativo-cena" id="quadroinutil" data-aqui="quarto-0" data-alterado="quarto-0-quadro"></button>  
+    <button class="interativo-cena" id="despertadorbarulhento" data-aqui="quarto-0" data-alterado="quarto-0-despertador"></button> 
+    <button class="interativo-cena" id="chavepano" data-aqui="quarto-0" data-alterado="quarto-0-chave"></button>  
+    <button class="interativo-cena" id="armariobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-armario"></button> 
+    <button class="interativo-cena" id="espelhobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-espelho"></button> 
+    <button class="interativo-cena" id="cortinabanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-cortina"></button> 
+
+     
+    <!-- ========================================== -->
+    <!-- ESPAÇO 2: SEM SETAS E COM BOTÃO VOLTAR     -->
+    <!-- (Abre zoom fechado por cima da cena)       -->
+    <!-- ========================================== -->
+    <button class="interativo-zoom" id="gavetameio" data-aqui="hall-0" data-zoom="gaveta"></button>
+    <button class="interativo-zoom" id="bilhetequadro" data-aqui="hall-1" data-zoom="bilhete"></button>
+    <button class="interativo-zoom" id="bilhetecasaco" data-aqui="hall-2" data-zoom="casaco"></button>
+    <button class="interativo-zoom" id="caixahall" data-aqui="hall-2" data-zoom="caixa"></button>
+    <button class="interativo-zoom" id="quadrog1" data-aqui="quarto-2" data-zoom="quadro1"></button>
+    <button class="interativo-zoom" id="quadrog2" data-aqui="quarto-2" data-zoom="quadro2"></button>
+    <button class="interativo-zoom" id="quadrog3" data-aqui="quarto-2" data-zoom="quadro3"></button>
+    <button class="interativo-zoom" id="quadrog4" data-aqui="quarto-2" data-zoom="quadro4"></button>
+    <button class="interativo-zoom" id="quadrog5" data-aqui="quarto-2" data-zoom="quadro5"></button>
+    <button class="interativo-zoom" id="canecasuja" data-aqui="quarto-2" data-zoom="caneca"></button>    
+    <button class="interativo-zoom" id="computadorazul" data-aqui="quarto-2" data-zoom="computador"></button> 
+    <button class="interativo-zoom" id="fornofechado" data-aqui="cozinha-0" data-zoom="forno"></button>
+    <button class="interativo-zoom" id="geladeirasenha" data-aqui="cozinha-1" data-zoom="geladeira"></button>  
+    <div id="zoom-objeto" hidden>
+      <button id="fechar-zoom" aria-label="Voltar para a sala">↓ Voltar</button>
+      
+      <!-- Botões clicáveis que existem apenas DENTRO de um zoom -->
+      <button class="item-zoom" id="pegar-chave" data-no-zoom="gaveta"></button>
+    </div>
     
   </div>
 
   <script src="trocadecomodos.js"></script>
+  <script src="inventario.js"></script>
 </body>
 </html>
