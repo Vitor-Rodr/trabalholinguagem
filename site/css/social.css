@@ -1,0 +1,45 @@
+/* Página Social */
+
+.social-card {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  padding: 30px 24px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.social-card:hover {
+  border-color: var(--cor-destaque);
+  transform: translateY(-4px);
+}
+
+.social-icon {
+  font-size: 2.5rem;
+}
+
+.social-card h2 {
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  color: var(--cor-destaque);
+  text-transform: uppercase;
+}
+
+.social-card p {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+  line-height: 1.4;
+}
+
+.social-link-btn {
+  margin-top: 10px;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+}
