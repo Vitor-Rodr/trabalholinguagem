@@ -39,7 +39,6 @@ function desenhar() {
     porta.hidden = porta.dataset.aqui !== vistaBase;
   });
 
-  // Os botões do Espaço 1 continuam visíveis para poder clicar de novo e desvirar
   interativosCena.forEach(item => {
     item.hidden = item.dataset.aqui !== vistaBase;
   });
@@ -47,6 +46,11 @@ function desenhar() {
   interativosZoom.forEach(item => {
     item.hidden = item.dataset.aqui !== vistaBase;
   });
+
+  // Atualiza quais itens espalhados aparecem nesta vista
+  if (typeof atualizarItensVisiveis === "function") {
+    atualizarItensVisiveis(vistaBase);
+  }
 }
 
 function abrirZoom(nomeZoom) {
@@ -73,7 +77,7 @@ function transicao(mudar) {
 }
 
 function girar(direcao) {
-  if (!zoomTela.hidden) return; // Bloqueia o giro apenas quando estiver dentro de um Zoom
+  if (!zoomTela.hidden) return;
   const total = comodos[estado.comodo].vistas;
   transicao(() => {
     estado.vista = (estado.vista + direcao + total) % total;
@@ -112,7 +116,6 @@ portas.forEach(porta => {
   });
 });
 
-// Espaço 1: Alterna (liga/desliga) no próprio objeto, mantendo setas e sem botão Voltar
 interativosCena.forEach(item => {
   item.addEventListener("click", () => {
     const vistaBase = item.dataset.aqui;
@@ -128,7 +131,6 @@ interativosCena.forEach(item => {
   });
 });
 
-// Espaço 2: Abre o Zoom sem setas e com botão Voltar
 interativosZoom.forEach(item => {
   item.addEventListener("click", () => {
     abrirZoom(item.dataset.zoom);
@@ -138,17 +140,3 @@ interativosZoom.forEach(item => {
 btnFecharZoom.addEventListener("click", fecharZoom);
 
 desenhar();
-
-// Pressione "H" para mostrar/esconder todas as áreas clicáveis
-document.addEventListener("keydown", e => {
-  if (e.key.toLowerCase() === "h") {
-    cena.classList.toggle("debug");
-  }
-});
-
-// Pressione "H" para mostrar/esconder todas as áreas clicáveis
-document.addEventListener("keydown", e => {
-  if (e.key.toLowerCase() === "h") {
-    cena.classList.toggle("debug");
-  }
-});

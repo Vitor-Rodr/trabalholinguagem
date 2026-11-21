@@ -26,7 +26,6 @@
 
     <!-- ========================================== -->
     <!-- ESPAÇO 1: COM SETAS E SEM BOTÃO VOLTAR     -->
-    <!-- (Clica para alterar, clica de novo volta)  -->
     <!-- ========================================== -->
     <button class="interativo-cena" id="tapetevirado" data-aqui="hall-0" data-alterado="hall-0-tapete"></button>
     <button class="interativo-cena" id="gavetainutil" data-aqui="hall-0" data-alterado="hall-0-inutil"></button>  
@@ -38,10 +37,8 @@
     <button class="interativo-cena" id="espelhobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-espelho"></button> 
     <button class="interativo-cena" id="cortinabanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-cortina"></button> 
 
-     
     <!-- ========================================== -->
     <!-- ESPAÇO 2: SEM SETAS E COM BOTÃO VOLTAR     -->
-    <!-- (Abre zoom fechado por cima da cena)       -->
     <!-- ========================================== -->
     <button class="interativo-zoom" id="gavetameio" data-aqui="hall-0" data-zoom="gaveta"></button>
     <button class="interativo-zoom" id="bilhetequadro" data-aqui="hall-1" data-zoom="bilhete"></button>
@@ -56,14 +53,32 @@
     <button class="interativo-zoom" id="computadorazul" data-aqui="quarto-2" data-zoom="computador"></button> 
     <button class="interativo-zoom" id="fornofechado" data-aqui="cozinha-0" data-zoom="forno"></button>
     <button class="interativo-zoom" id="geladeirasenha" data-aqui="cozinha-1" data-zoom="geladeira"></button>  
+
     <div id="zoom-objeto" hidden>
       <button id="fechar-zoom" aria-label="Voltar para a sala">↓ Voltar</button>
       
-      <!-- Botões clicáveis que existem apenas DENTRO de um zoom -->
-      <button class="item-zoom" id="pegar-chave" data-no-zoom="gaveta"></button>
+      <!-- Botão clicável dentro do zoom da gaveta -->
+      <button class="item-zoom" id="pegar-chave" data-no-zoom="gaveta" onclick="pegarItem(this, 'Chave', '../assets/images/cenarioobj/chavegavetainutil.png')">
+        <img src="../assets/images/cenarioobj/chavegavetainutil.png" alt="Chave">
+      </button>
+
+       <button class="item-zoom" id="pegar-engrenagem3" data-no-zoom="caixa" onclick="pegarItem(this, 'Engrenagem 3', '../assets/images/cenarioobj/engrenagem3.png')">
+         <img src="../assets/images/cenarioobj/engrenagem3.png" alt="Engrenagem 3">
+      </button>
+
+      
     </div>
     
   </div>
+
+  <!-- Barra de Inventário abaixo do cenário -->
+  <div class="painel-inventario">
+    <h3>Inventário (<span id="contador-slots">0</span>/6)</h3>
+    <div id="inventario" class="grade-inventario"></div>
+  </div>
+
+  <!-- Mensagem de status usada pelo inventario.js -->
+  <p id="mensagem-status" class="status"></p>
 
   <script src="trocadecomodos.js"></script>
   <script src="inventario.js"></script>

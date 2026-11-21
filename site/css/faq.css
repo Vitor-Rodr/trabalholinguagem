@@ -24,7 +24,7 @@
   color: #ffffff;
 }
 
-/* Lista de Perguntas (Acordeão) */
+/* Lista de Perguntas */
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
 
 .faq-question {
   width: 100%;
-  padding: 20px 24px;
+  padding: 20px 24px 12px 24px;
   background: none;
   border: none;
   color: #ffffff;
@@ -55,34 +55,11 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.faq-question::after {
-  content: '+';
-  font-size: 1.4rem;
-  color: #ff4655;
-  font-family: monospace;
-  transition: transform 0.3s ease;
-}
-
-.faq-item.active .faq-question::after {
-  content: '-';
 }
 
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  background-color: rgba(17, 17, 17, 0.6);
-}
-
-.faq-item.active .faq-answer {
-  max-height: 200px;
   padding: 0 24px 20px 24px;
+  background-color: rgba(17, 17, 17, 0.6);
   border-top: 1px solid #222222;
 }
 
@@ -91,5 +68,5 @@
   font-size: 0.9rem;
   line-height: 1.6;
   color: #cccccc;
-  padding-top: 15px;
+  padding-top: 12px;
 }
