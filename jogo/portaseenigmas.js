@@ -157,7 +157,7 @@ desenhar();
 
 // Alarme despertador do quarto (toca ao clicar e pausa ao clicar de novo)
 var btnDespertador = document.getElementById("despertadorbarulhento");
-var somDespertador = new Audio("../assets/video/alarme.mp3");
+var somDespertador = new Audio("../assets/video/aiaiai.mp3");
 
 // Alterna entre tocar e pausar o som, mantendo a troca de vista da cena
 function acionarDespertador() {
