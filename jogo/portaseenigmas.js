@@ -10,9 +10,31 @@ var btnConfirmarSenha = document.getElementById("btn-confirmar-senha");
 var btnLimparSenha = document.getElementById("btn-limpar-senha");
 var avisoSenhaGeladeira = document.getElementById("aviso-senha-geladeira");
 
-// Redireciona de volta para a pagina inicial apos vencer
+// Redireciona de volta para a pagina inicial ao clicar no botao da tela final
 function voltarPaginaInicial() {
   window.location.href = "../index.html";
+}
+
+// Exibe a tela final com a imagem escolhida e o botao de voltar para o site
+function mostrarTelaFinal(nomeImagem, textoStatus, corStatus) {
+  var telaFinal = document.getElementById("tela-final");
+  var imgFinal = document.getElementById("imagem-final");
+
+  if (typeof pararCronometro === "function") {
+    pararCronometro();
+  }
+
+  if (typeof escreverStatus === "function" && textoStatus) {
+    escreverStatus(textoStatus, corStatus || "#a6e3a1");
+  }
+
+  if (imgFinal) {
+    imgFinal.src = "../assets/images/finais/" + nomeImagem;
+  }
+
+  if (telaFinal) {
+    telaFinal.hidden = false;
+  }
 }
 
 // Verifica se o jogador possui as 3 engrenagens necessarias
@@ -54,20 +76,34 @@ function clicarPorta() {
     escreverStatus("Voce usou a Chave da Gaveta e abriu a porta!", "#a6e3a1");
   }
 
-  // Fechadura dourada exige as 3 engrenagens, avisa que ganhou e volta pro inicio
+  // Fechadura dourada exige as 3 engrenagens e define o final com ou sem criancas
   if (this.id === "porta-final-escape") {
     if (!temTresEngrenagens()) {
       escreverStatus("A fechadura dourada esta travada! Colete as 3 engrenagens para escapar.", "#f38ba8");
       return;
     }
 
+    var resgatouCriancas = typeof temItem === "function" && temItem("Crianças");
+
     venceuJogo = true;
     removerItem("Engrenagem 1");
     removerItem("Engrenagem 2");
     removerItem("Engrenagem 3");
 
-    escreverStatus("Voce ganhou! Voce encaixou as 3 engrenagens e escapou! Voltando ao inicio...", "#a6e3a1");
-    setTimeout(voltarPaginaInicial, 1500);
+    if (resgatouCriancas) {
+      removerItem("Crianças");
+      mostrarTelaFinal(
+        "voceganhoucomtodos.png",
+        "Voce ganhou! Escapou com as 3 engrenagens e resgatou as criancas!",
+        "#a6e3a1"
+      );
+    } else {
+      mostrarTelaFinal(
+        "voceganhousozinho.png",
+        "Voce ganhou! Escapou com as 3 engrenagens, mas nao resgatou as criancas.",
+        "#f9e2af"
+      );
+    }
     return;
   }
 
@@ -153,7 +189,6 @@ if (btnConfirmarSenha) {
 
 // Garante que as portas fiquem visiveis/escondidas corretamente ao carregar
 desenhar();
-
 
 // Alarme despertador do quarto (toca ao clicar e pausa ao clicar de novo)
 var btnDespertador = document.getElementById("despertadorbarulhento");
