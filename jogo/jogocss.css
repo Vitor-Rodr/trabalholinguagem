@@ -282,10 +282,10 @@ body {
 #cena[data-vista="cozinha-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.3.png"); }
 #cena[data-vista="cozinha-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.4.png"); }
 
-#cena[data-vista="salaJantar-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.1.png"); }
+#cena[data-vista="salaJantar-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.4.png"); }
 #cena[data-vista="salaJantar-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.2.png"); }
-#cena[data-vista="salaJantar-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.3.png"); }
-#cena[data-vista="salaJantar-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.4.png"); }
+#cena[data-vista="salaJantar-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.1.png"); }
+#cena[data-vista="salaJantar-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.3.png"); }
 
 #cena[data-vista="calabouco-0"] { background-image: url("../assets/images/cenarios-jogo/Imagem\ 6.1.png"); }
 #cena[data-vista="calabouco-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 6.2.jpg"); }
