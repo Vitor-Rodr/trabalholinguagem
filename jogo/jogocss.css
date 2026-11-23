@@ -477,10 +477,3 @@ body {
   background: #fff;
   color: #111;
 }
-
-/* Destaca áreas clicáveis quando o modo debug (tecla H) está ativo */
-#cena.debug .porta { background: rgba(255, 0, 0, 0.35); border: 2px dashed red; }
-#cena.debug .interativo-cena { background: rgba(0, 255, 0, 0.35); border: 2px dashed lime; }
-#cena.debug .interativo-zoom { background: rgba(255, 200, 0, 0.4); border: 2px dashed orange; }
-#cena.debug .item-zoom { background: rgba(0, 150, 255, 0.4); border: 2px dashed cyan; }
-#cena.debug .item-cenario { background: rgba(255, 255, 0, 0.35); border: 2px dashed yellow; }
