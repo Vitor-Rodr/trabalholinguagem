@@ -70,8 +70,16 @@ function clicarFrango() {
   abrirBuracoMesa();
 }
 
-// Clique no buraco (dentro do zoom): desce para a sala de prisao
-function entrarNoBuraco() {
-  escreverStatus("Voce desceu pelo buraco da mesa...", "#89b4fa");
-  irPara("prisao", 0);
+// Abre o buraco na mesa usando o Pe de Cabra e remove o item do inventario
+function abrirBuracoMesa() {
+  if (buracoAberto) {
+    return;
+  }
+
+  buracoAberto = true;
+  removerItem("Pé de Cabra");
+  escreverStatus("Voce usou o Pe de Cabra e abriu um buraco na mesa!", "#a6e3a1");
+
+  // Troca o zoom do frango pelo zoom da mesa com buraco
+  abrirZoom("buraco");
 }
