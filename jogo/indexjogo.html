@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Banquete do Guloso</title>
   <link rel="stylesheet" href="jogocss.css">
+  <link rel="stylesheet" href="diario.css">
 </head>
 <body>
   <!-- Cronômetro regressivo no topo da tela -->
   <div id="cronometro">05:00</div>
+
+  <button type="button" id="btn-abrir-diario">Diário (0)</button>
 
   <!-- Área principal do cenário -->
   <div id="cena">
@@ -125,11 +128,22 @@
     <button type="button" id="btn-voltar-site" onclick="voltarPaginaInicial()">Voltar para o site</button>
   </div>
 
+  <div id="modal-diario" hidden>
+    <button type="button" id="btn-fechar-diario" aria-label="Fechar diário">✕</button>
+    <div class="diario-area-escrita">
+      <h2 class="diario-titulo">Diário de Investigação</h2>
+      <div id="lista-anotacoes">
+        <p class="diario-vazio">Nenhuma pista anotada ainda...</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts do jogo -->
   <script src="trocadecomodos.js"></script>
   <script src="inventario.js"></script>
   <script src="itenscenario.js"></script>
   <script src="portaseenigmas.js"></script>
   <script src="cronometro.js"></script>
+  <script src="diario.js"></script>
 </body>
 </html>

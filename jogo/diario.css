@@ -1,4 +1,4 @@
-/* Botão fixo no canto superior esquerdo (espelhando o cronômetro na direita) */
+/* Botão no topo esquerdo */
 #btn-abrir-diario {
   position: fixed;
   top: 14px;
@@ -21,14 +21,13 @@
   transform: translateY(-1px);
 }
 
-/* Brilho temporário quando uma anotação nova entra ou é atualizada */
 #btn-abrir-diario.nova-pista {
   background: #f9e2af;
   color: #111111;
   box-shadow: 0 0 12px rgba(249, 226, 175, 0.85);
 }
 
-/* Imagem do diário sobreposta no centro (não ocupa a tela inteira) */
+/* Janela flutuante com a imagem do diário (não cobre a tela inteira) */
 #modal-diario {
   position: fixed;
   top: 50%;
@@ -43,7 +42,7 @@
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.85));
 }
 
-/* Botão fechar no canto superior direito da imagem */
+/* Botão fechar no canto da imagem */
 #btn-fechar-diario {
   position: absolute;
   top: 6%;
@@ -64,11 +63,10 @@
   border-color: #ff4655;
 }
 
-/* Área interna onde o texto fica "escrito" em cima da imagem */
+/* Área interna onde o texto fica escrito por cima da imagem */
 .diario-area-escrita {
   width: 100%;
   height: 100%;
-  /* Ajuste essas porcentagens para alinhar o texto dentro das margens da sua imagem */
   padding: 12% 14% 12% 14%;
   display: flex;
   flex-direction: column;
@@ -83,7 +81,6 @@
   padding-bottom: 4px;
 }
 
-/* Rolagem interna quando houver várias anotações */
 #lista-anotacoes {
   overflow-y: auto;
   flex: 1;
