@@ -1,11 +1,12 @@
 // Menu hambúrguer do navbar (celular)
-(function () {
-  var botao = document.querySelector(".nav-toggle");
-  var menu = document.querySelector(".nav-menu");
-  if (!botao || !menu) return;
+var navBotao = document.querySelector(".nav-toggle");
+var navMenu = document.querySelector(".nav-menu");
 
-  botao.addEventListener("click", function () {
-    var aberto = menu.classList.toggle("aberto");
-    botao.setAttribute("aria-expanded", aberto);
-  });
-})();
+function alternarMenu() {
+  var aberto = navMenu.classList.toggle("aberto");
+  navBotao.setAttribute("aria-expanded", aberto);
+}
+
+if (navBotao && navMenu) {
+  navBotao.onclick = alternarMenu;
+}

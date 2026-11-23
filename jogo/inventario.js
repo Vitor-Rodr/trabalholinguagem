@@ -39,20 +39,20 @@ function removerItem(nomeItem) {
   return false;
 }
 
-// Coleta um item clicado na cena ou no zoom e coloca no inventario
+// Coleta um item clicado na cena ou no zoom e coloca no inventario (devolve true se coletou)
 function pegarItem(botaoClicado, nomeItem, caminhoImagem) {
   var imagemLimpa = (caminhoImagem || "").trim();
 
   // Evita pegar duas vezes o mesmo botao
   if (botaoClicado && botaoClicado.getAttribute("data-coletado") === "true") {
     escreverStatus("Voce ja pegou este item.", "#f9e2af");
-    return;
+    return false;
   }
 
   // Bloqueia coleta quando atingir o limite de 6 itens
   if (inventario.length >= LIMITE_INVENTARIO) {
     escreverStatus("Inventario cheio! Nao cabe mais nada.", "#f38ba8");
-    return;
+    return false;
   }
 
   if (!temItem(nomeItem)) {
@@ -72,7 +72,10 @@ function pegarItem(botaoClicado, nomeItem, caminhoImagem) {
 
     escreverStatus("Voce coletou: " + nomeItem, "#a6e3a1");
     renderizarInventario();
+    return true;
   }
+
+  return false;
 }
 
 // Monta os quadradinhos dos itens na tela e atualiza o contador (X/6)

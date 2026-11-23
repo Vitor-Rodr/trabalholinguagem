@@ -33,8 +33,8 @@ var itensZoom = document.querySelectorAll(".item-zoom, [data-no-zoom]");
 // Variavel usada por outros scripts para saber se a geladeira ja foi aberta
 var geladeiraDestravada = false;
 
-// Guarda a funcao que vai rodar depois do fade da cena
-var acaoPendenteTransicao = null;
+// Guarda para onde o jogador vai quando o fade da cena terminar
+var destinoPendente = null;
 
 // Atualiza imagem da cena e visibilidade dos botoes da vista atual
 function desenhar() {
@@ -80,8 +80,11 @@ function abrirZoom(nomeZoom) {
   zoomTela.hidden = false;
 
   // Mostra apenas os itens ou paineis que pertencem a esse zoom
+  // Itens ja coletados continuam escondidos mesmo se o zoom for aberto de novo
   for (var i = 0; i < itensZoom.length; i++) {
-    itensZoom[i].hidden = itensZoom[i].dataset.noZoom !== nomeZoom;
+    var naoEhDesteZoom = itensZoom[i].dataset.noZoom !== nomeZoom;
+    var jaColetado = itensZoom[i].getAttribute("data-coletado") === "true";
+    itensZoom[i].hidden = naoEhDesteZoom || jaColetado;
   }
 
   // Se abriu o painel de senha da geladeira, limpa textos anteriores
@@ -98,9 +101,10 @@ function fecharZoom() {
 
 // Finaliza a mudanca de cena apos o tempo de fade
 function concluirTransicao() {
-  if (typeof acaoPendenteTransicao === "function") {
-    acaoPendenteTransicao();
-    acaoPendenteTransicao = null;
+  if (destinoPendente) {
+    estado.comodo = destinoPendente.comodo;
+    estado.vista = destinoPendente.vista;
+    destinoPendente = null;
   }
 
   desenhar();
@@ -108,9 +112,9 @@ function concluirTransicao() {
 }
 
 // Faz uma transicao suave ao trocar de vista ou comodo
-function transicao(mudar) {
+function transicao(comodo, vista) {
   fecharZoom();
-  acaoPendenteTransicao = mudar;
+  destinoPendente = { comodo: comodo, vista: vista };
   cena.classList.add("fade");
   setTimeout(concluirTransicao, 200);
 }
@@ -122,23 +126,32 @@ function girar(direcao) {
   }
 
   var total = comodos[estado.comodo].vistas;
-  transicao(function () {
-    estado.vista = (estado.vista + direcao + total) % total;
-  });
+  var novaVista = (estado.vista + direcao + total) % total;
+  transicao(estado.comodo, novaVista);
 }
 
 // Vai direto para um comodo e vista especificos
 function irPara(comodo, vista) {
-  transicao(function () {
-    estado.comodo = comodo;
-    estado.vista = vista;
-  });
+  transicao(comodo, vista);
 }
 
 // Alterna entre a vista normal e a vista alterada do objeto clicado
 function clicarInterativoCena() {
   var vistaBase = this.dataset.aqui;
   var vistaAlt = this.dataset.alterado;
+
+  // Objeto que esconde um item (ex.: pano do quarto esconde a Chave do Chao)
+  if (this.dataset.item) {
+    // Item ja pego: o pano continua afastado, nao volta ao normal
+    if (this.getAttribute("data-coletado") === "true") {
+      return;
+    }
+
+    // Se o inventario estiver cheio, nao mexe na cena para o jogador poder tentar de novo
+    if (!pegarItem(this, this.dataset.item, this.dataset.imagem)) {
+      return;
+    }
+  }
 
   if (vistasAlteradas[vistaBase] === vistaAlt) {
     delete vistasAlteradas[vistaBase];
@@ -155,14 +168,16 @@ function clicarInterativoZoom() {
 }
 
 // Botoes de girar e fechar zoom
-setaEsq.onclick = function () {
+function girarParaEsquerda() {
   girar(-1);
-};
+}
 
-setaDir.onclick = function () {
+function girarParaDireita() {
   girar(1);
-};
+}
 
+setaEsq.onclick = girarParaEsquerda;
+setaDir.onclick = girarParaDireita;
 btnFecharZoom.onclick = fecharZoom;
 
 // Liga os eventos dos objetos de cena e de zoom
@@ -175,7 +190,7 @@ for (var j = 0; j < interativosZoom.length; j++) {
 }
 
 // Atalhos do teclado: H para debug, Esc para fechar zoom e setas para girar
-document.onkeydown = function (e) {
+function teclaPressionada(e) {
   if (e.key.toLowerCase() === "h") {
     cena.classList.toggle("debug");
   }
@@ -195,7 +210,9 @@ document.onkeydown = function (e) {
   if (e.key === "ArrowRight") {
     girar(1);
   }
-};
+}
+
+document.onkeydown = teclaPressionada;
 
 // Renderizacao inicial do jogo
 desenhar();

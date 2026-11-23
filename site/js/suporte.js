@@ -1,23 +1,43 @@
 // Modal do formulário de suporte
-(function () {
-  var modal = document.getElementById("modalBug");
+var modalBug = document.getElementById("modalBug");
+var botoesModal = document.querySelectorAll("[data-abrir-modal]");
+var btnFecharModal = document.querySelector(".close-btn");
+var btnFaq = document.getElementById("btnFaq");
 
-  function abrir() { modal.classList.add("active"); }
-  function fechar() { modal.classList.remove("active"); }
+function abrirModal() {
+  modalBug.classList.add("active");
+}
 
-  document.querySelectorAll("[data-abrir-modal]").forEach(function (b) {
-    b.addEventListener("click", abrir);
-  });
-  document.querySelector(".close-btn").addEventListener("click", fechar);
+function fecharModal() {
+  modalBug.classList.remove("active");
+}
 
-  // Fecha ao clicar fora da caixa ou apertar Esc
-  modal.addEventListener("click", function (e) { if (e.target === modal) fechar(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") fechar(); });
-
-  var faq = document.getElementById("btnFaq");
-  if (faq) {
-    faq.addEventListener("click", function () {
-      alert("Consulte o manual de instruções na página de informações do jogo.");
-    });
+// Fecha ao clicar fora da caixa
+function cliqueNoModal(e) {
+  if (e.target === modalBug) {
+    fecharModal();
   }
-})();
+}
+
+// Fecha ao apertar Esc
+function teclaNoSuporte(e) {
+  if (e.key === "Escape") {
+    fecharModal();
+  }
+}
+
+function avisarFaq() {
+  alert("Consulte o manual de instruções na página de informações do jogo.");
+}
+
+for (var b = 0; b < botoesModal.length; b++) {
+  botoesModal[b].onclick = abrirModal;
+}
+
+btnFecharModal.onclick = fecharModal;
+modalBug.onclick = cliqueNoModal;
+document.onkeydown = teclaNoSuporte;
+
+if (btnFaq) {
+  btnFaq.onclick = avisarFaq;
+}

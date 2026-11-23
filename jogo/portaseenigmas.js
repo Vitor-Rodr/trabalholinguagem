@@ -118,25 +118,33 @@ for (var i = 0; i < portas.length; i++) {
   portas[i].onclick = clicarPorta;
 }
 
+// Aceita apenas numeros no campo de senha (maximo 7 digitos)
+function filtrarSenha() {
+  inputSenhaGeladeira.value = inputSenhaGeladeira.value.replace(/\D/g, "").slice(0, 7);
+}
+
+// Confirma a senha ao apertar Enter
+function teclaNaSenha(e) {
+  if (e.key === "Enter") {
+    verificarSenhaGeladeira();
+  }
+}
+
+// Limpa o campo de senha e o aviso
+function limparSenhaGeladeira() {
+  inputSenhaGeladeira.value = "";
+  avisoSenhaGeladeira.innerText = "";
+  inputSenhaGeladeira.focus();
+}
+
 // Liga os eventos do painel de senha da geladeira
 if (inputSenhaGeladeira) {
-  inputSenhaGeladeira.oninput = function () {
-    inputSenhaGeladeira.value = inputSenhaGeladeira.value.replace(/\D/g, "").slice(0, 7);
-  };
-
-  inputSenhaGeladeira.onkeydown = function (e) {
-    if (e.key === "Enter") {
-      verificarSenhaGeladeira();
-    }
-  };
+  inputSenhaGeladeira.oninput = filtrarSenha;
+  inputSenhaGeladeira.onkeydown = teclaNaSenha;
 }
 
 if (btnLimparSenha) {
-  btnLimparSenha.onclick = function () {
-    inputSenhaGeladeira.value = "";
-    avisoSenhaGeladeira.innerText = "";
-    inputSenhaGeladeira.focus();
-  };
+  btnLimparSenha.onclick = limparSenhaGeladeira;
 }
 
 if (btnConfirmarSenha) {
