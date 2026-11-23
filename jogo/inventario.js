@@ -1,46 +1,57 @@
+// Lista de itens carregados pelo jogador
 var inventario = [];
+
+// Quantidade maxima de itens permitidos na mochila/inventario
 var LIMITE_INVENTARIO = 6;
 
+// Mostra mensagens de feedback na barra inferior da tela
 function escreverStatus(texto, cor) {
   var status = document.getElementById("mensagem-status");
-  if (!status) return;
+  if (!status) {
+    return;
+  }
+
   status.innerText = texto;
   status.style.color = cor;
 }
 
-// Controla quais itens espalhados aparecem na vista atual
-function atualizarItensVisiveis(vistaAtual) {
-  var itens = document.getElementsByClassName("item-cenario");
-
-  for (var i = 0; i < itens.length; i++) {
-    var item = itens[i];
-    var jaFoiColetado = item.getAttribute("data-coletado") === "true";
-    var estaNestaVista = item.getAttribute("data-aqui") === vistaAtual;
-
-    if (jaFoiColetado || !estaNestaVista) {
-      item.hidden = true;
-    } else {
-      item.hidden = false;
-    }
-  }
-}
-
-// Verifica se um item já está no inventário
+// Percorre o inventario para saber se o jogador ja tem esse item
 function temItem(nomeItem) {
   for (var i = 0; i < inventario.length; i++) {
     if (inventario[i].nome === nomeItem) {
       return true;
     }
   }
+
   return false;
 }
 
-// Função chamada pelo onclick="pegarItem(this, 'Nome', 'caminho.png')"
+// Tira um item do inventario pelo nome e redesenha os slots
+function removerItem(nomeItem) {
+  for (var i = 0; i < inventario.length; i++) {
+    if (inventario[i].nome === nomeItem) {
+      inventario.splice(i, 1);
+      renderizarInventario();
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// Coleta um item clicado na cena ou no zoom e coloca no inventario
 function pegarItem(botaoClicado, nomeItem, caminhoImagem) {
   var imagemLimpa = (caminhoImagem || "").trim();
 
+  // Evita pegar duas vezes o mesmo botao
+  if (botaoClicado && botaoClicado.getAttribute("data-coletado") === "true") {
+    escreverStatus("Voce ja pegou este item.", "#f9e2af");
+    return;
+  }
+
+  // Bloqueia coleta quando atingir o limite de 6 itens
   if (inventario.length >= LIMITE_INVENTARIO) {
-    escreverStatus("Inventário cheio! Não cabe mais nada.", "#f38ba8");
+    escreverStatus("Inventario cheio! Nao cabe mais nada.", "#f38ba8");
     return;
   }
 
@@ -50,16 +61,21 @@ function pegarItem(botaoClicado, nomeItem, caminhoImagem) {
       imagem: imagemLimpa
     });
 
-    // Marca como coletado e esconde para não reaparecer ao trocar de vista/cômodo
-    botaoClicado.setAttribute("data-coletado", "true");
-    botaoClicado.hidden = true;
+    if (botaoClicado) {
+      botaoClicado.setAttribute("data-coletado", "true");
 
-    escreverStatus("Você coletou: " + nomeItem, "#a6e3a1");
+      // Objetos .interativo-cena (como o pano do quarto) continuam visiveis para trocar de cena
+      if (!botaoClicado.classList.contains("interativo-cena")) {
+        botaoClicado.hidden = true;
+      }
+    }
+
+    escreverStatus("Voce coletou: " + nomeItem, "#a6e3a1");
     renderizarInventario();
   }
 }
 
-// Desenha os ícones coletados dentro da barra de inventário
+// Monta os quadradinhos dos itens na tela e atualiza o contador (X/6)
 function renderizarInventario() {
   var containerInventario = document.getElementById("inventario");
   var contador = document.getElementById("contador-slots");
@@ -68,23 +84,13 @@ function renderizarInventario() {
   for (var i = 0; i < inventario.length; i++) {
     var item = inventario[i];
 
-    htmlGerado += `
-      <div class="slot-item" onclick="inspecionarItem(${i})" title="${item.nome}">
-        <img src="${item.imagem}" alt="${item.nome}">
-        <span>${item.nome}</span>
-      </div>
-    `;
+    htmlGerado +=
+      '<div class="slot-item" onclick="inspecionarItem(' + i + ')" title="' + item.nome + '">' +
+        '<img src="' + item.imagem + '" alt="' + item.nome + '">' +
+        '<span>' + item.nome + '</span>' +
+      '</div>';
   }
 
   containerInventario.innerHTML = htmlGerado;
   contador.innerText = inventario.length;
-}
-
-// Mostra o nome do item na barra de status ao clicar nele dentro do inventário
-function inspecionarItem(indice) {
-  var item = inventario[indice];
-
-  if (item) {
-    escreverStatus("Item selecionado: " + item.nome, "#89b4fa");
-  }
 }

@@ -7,12 +7,16 @@
   <link rel="stylesheet" href="jogocss.css">
 </head>
 <body>
+  <!-- Cronômetro regressivo no topo da tela -->
+  <div id="cronometro">05:00</div>
+
+  <!-- Área principal do cenário -->
   <div id="cena">
-    
+    <!-- Setas de rotação lateral -->
     <button class="seta" id="esq" aria-label="Girar para a esquerda"></button>
     <button class="seta" id="dir" aria-label="Girar para a direita"></button>
-    
-    <!-- Portas -->
+
+    <!-- Portas de passagem entre cômodos -->
     <button class="porta" id="porta-hall-quarto" data-aqui="hall-2" data-para="quarto-0"></button>
     <button class="porta" id="porta-quarto-hall" data-aqui="quarto-3" data-para="hall-2"></button>
     <button class="porta" id="porta-quarto-banheiro" data-aqui="quarto-1" data-para="banheiro-0"></button>
@@ -24,22 +28,26 @@
     <button class="porta" id="porta-salaJantar-calabouco" data-aqui="salaJantar-2" data-para="calabouco-0"></button>
     <button class="porta" id="porta-calabouco-salaJantar" data-aqui="calabouco-1" data-para="salaJantar-2"></button>
 
-    <!-- ========================================== -->
-    <!-- ESPAÇO 1: COM SETAS E SEM BOTÃO VOLTAR     -->
-    <!-- ========================================== -->
-    <button class="interativo-cena" id="tapetevirado" data-aqui="hall-0" data-alterado="hall-0-tapete"></button>
-    <button class="interativo-cena" id="gavetainutil" data-aqui="hall-0" data-alterado="hall-0-inutil"></button>  
-    <button class="interativo-cena" id="armarioinutil" data-aqui="quarto-0" data-alterado="quarto-0-armario"></button>  
-    <button class="interativo-cena" id="quadroinutil" data-aqui="quarto-0" data-alterado="quarto-0-quadro"></button>  
-    <button class="interativo-cena" id="despertadorbarulhento" data-aqui="quarto-0" data-alterado="quarto-0-despertador"></button> 
-    <button class="interativo-cena" id="chavepano" data-aqui="quarto-0" data-alterado="quarto-0-chave"></button>  
-    <button class="interativo-cena" id="armariobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-armario"></button> 
-    <button class="interativo-cena" id="espelhobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-espelho"></button> 
-    <button class="interativo-cena" id="cortinabanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-cortina"></button> 
+    <!-- Fechadura dourada na grade do calabouço -->
+    <button class="porta" id="porta-final-escape" data-aqui="calabouco-0" aria-label="Fechadura dourada"></button>
 
-    <!-- ========================================== -->
-    <!-- ESPAÇO 2: SEM SETAS E COM BOTÃO VOLTAR     -->
-    <!-- ========================================== -->
+    <!-- Objetos interativos que mudam a imagem da cena -->
+    <button class="interativo-cena" id="tapetevirado" data-aqui="hall-0" data-alterado="hall-0-tapete"></button>
+    <button class="interativo-cena" id="gavetainutil" data-aqui="hall-0" data-alterado="hall-0-inutil"></button>
+    <button class="interativo-cena" id="armarioinutil" data-aqui="quarto-0" data-alterado="quarto-0-armario"></button>
+    <button class="interativo-cena" id="quadroinutil" data-aqui="quarto-0" data-alterado="quarto-0-quadro"></button>
+    <button class="interativo-cena" id="despertadorbarulhento" data-aqui="quarto-0" data-alterado="quarto-0-despertador"></button>
+    <button class="interativo-cena" id="chavepano" data-aqui="quarto-0" data-alterado="quarto-0-chave" onclick="pegarItem(this, 'Chave do Chão', '../assets/images/cenarioobj/chavegavetainutil.png')"></button>
+    <button class="interativo-cena" id="armariobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-armario"></button>
+    <button class="interativo-cena" id="espelhobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-espelho"></button>
+    <button class="interativo-cena" id="cortinabanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-cortina"></button>
+
+    <!-- Engrenagem 1 aparece na cena assim que a cortina do banheiro abre -->
+    <button class="item-cenario" id="pegar-engrenagem3-banheiro" data-aqui="banheiro-0-cortina" hidden onclick="pegarItem(this, 'Engrenagem 1', '../assets/images/cenarioobj/image7.png')">
+      <img src="../assets/images/cenarioobj/image7.png" alt="Engrenagem 1">
+    </button>
+
+    <!-- Objetos que abrem tela de zoom -->
     <button class="interativo-zoom" id="gavetameio" data-aqui="hall-0" data-zoom="gaveta"></button>
     <button class="interativo-zoom" id="bilhetequadro" data-aqui="hall-1" data-zoom="bilhete"></button>
     <button class="interativo-zoom" id="bilhetecasaco" data-aqui="hall-2" data-zoom="casaco"></button>
@@ -49,38 +57,55 @@
     <button class="interativo-zoom" id="quadrog3" data-aqui="quarto-2" data-zoom="quadro3"></button>
     <button class="interativo-zoom" id="quadrog4" data-aqui="quarto-2" data-zoom="quadro4"></button>
     <button class="interativo-zoom" id="quadrog5" data-aqui="quarto-2" data-zoom="quadro5"></button>
-    <button class="interativo-zoom" id="canecasuja" data-aqui="quarto-2" data-zoom="caneca"></button>    
-    <button class="interativo-zoom" id="computadorazul" data-aqui="quarto-2" data-zoom="computador"></button> 
+    <button class="interativo-zoom" id="canecasuja" data-aqui="quarto-2" data-zoom="caneca"></button>
+    <button class="interativo-zoom" id="computadorazul" data-aqui="quarto-2" data-zoom="computador"></button>
     <button class="interativo-zoom" id="fornofechado" data-aqui="cozinha-0" data-zoom="forno"></button>
-    <button class="interativo-zoom" id="geladeirasenha" data-aqui="cozinha-1" data-zoom="geladeira"></button>  
+    <button class="interativo-zoom" id="geladeirasenha" data-aqui="cozinha-1" data-zoom="geladeira"></button>
 
+    <!-- Camada de zoom -->
     <div id="zoom-objeto" hidden>
       <button id="fechar-zoom" aria-label="Voltar para a sala">↓ Voltar</button>
-      
-      <!-- Botão clicável dentro do zoom da gaveta -->
-      <button class="item-zoom" id="pegar-chave" data-no-zoom="gaveta" onclick="pegarItem(this, 'Chave', '../assets/images/cenarioobj/chavegavetainutil.png')">
-        <img src="../assets/images/cenarioobj/chavegavetainutil.png" alt="Chave">
+
+      <!-- Itens coletáveis dentro dos zooms -->
+      <button class="item-zoom" id="pegar-chave-gaveta" data-no-zoom="gaveta" onclick="pegarItem(this, 'Chave da Gaveta', '../assets/images/cenarioobj/chavegavetainutil.png')">
+        <img src="../assets/images/cenarioobj/chavegavetainutil.png" alt="Chave da Gaveta">
       </button>
 
-       <button class="item-zoom" id="pegar-engrenagem3" data-no-zoom="caixa" onclick="pegarItem(this, 'Engrenagem 3', '../assets/images/cenarioobj/engrenagem3.png')">
-         <img src="../assets/images/cenarioobj/engrenagem3.png" alt="Engrenagem 3">
+      <button class="item-zoom" id="pegar-engrenagem3-caixa" data-no-zoom="caixa" onclick="pegarItem(this, 'Engrenagem 3', '../assets/images/cenarioobj/image4.png')">
+        <img src="../assets/images/cenarioobj/image4.png" alt="Engrenagem 3">
       </button>
 
-      
+      <button class="item-zoom" id="pegar-engrenagem2congelada" data-no-zoom="geladeira-aberta" onclick="pegarItem(this, 'Engrenagem 2 Congelada', '../assets/images/cenarioobj/engrenagem2congelada.png')">
+        <img src="../assets/images/cenarioobj/engrenagem2congelada.png" alt="Engrenagem 2 Congelada">
+      </button>
+
+      <!-- Painel de senha da geladeira -->
+      <div id="senha-geladeira" data-no-zoom="geladeira">
+        <p class="titulo-senha">Digite a senha (7 dígitos)</p>
+        <input type="text" id="input-senha-geladeira" maxlength="7" inputmode="numeric" placeholder="-------" autocomplete="off">
+        <div class="botoes-senha">
+          <button type="button" id="btn-confirmar-senha">Confirmar</button>
+          <button type="button" id="btn-limpar-senha">Limpar</button>
+        </div>
+        <p id="aviso-senha-geladeira"></p>
+      </div>
     </div>
-    
   </div>
 
-  <!-- Barra de Inventário abaixo do cenário -->
+  <!-- Painel do inventário -->
   <div class="painel-inventario">
     <h3>Inventário (<span id="contador-slots">0</span>/6)</h3>
     <div id="inventario" class="grade-inventario"></div>
   </div>
 
-  <!-- Mensagem de status usada pelo inventario.js -->
+  <!-- Feedback de ações -->
   <p id="mensagem-status" class="status"></p>
 
+ <!-- Scripts do jogo -->
   <script src="trocadecomodos.js"></script>
   <script src="inventario.js"></script>
+  <script src="itenscenario.js"></script>
+  <script src="portaseenigmas.js"></script>
+  <script src="cronometro.js"></script>
 </body>
 </html>

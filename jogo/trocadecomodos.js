@@ -1,4 +1,5 @@
-const comodos = {
+// Quantidade de angulos/vistas de cada comodo da casa
+var comodos = {
   hall:       { vistas: 3 },
   quarto:     { vistas: 4 },
   banheiro:   { vistas: 1 },
@@ -7,136 +8,194 @@ const comodos = {
   calabouco:  { vistas: 2 }
 };
 
-const estado = { comodo: "hall", vista: 0 };
-const vistasAlteradas = {}; // Memoriza o estado dos objetos do Espaço 1 por vista
+// Posicao inicial do jogador ao entrar no jogo
+var estado = {
+  comodo: "hall",
+  vista: 0
+};
 
-const cena = document.getElementById("cena");
-const setaEsq = document.getElementById("esq");
-const setaDir = document.getElementById("dir");
-const portas = document.querySelectorAll(".porta");
+// Guarda quando uma vista muda de imagem (ex: cortina aberta)
+var vistasAlteradas = {};
 
-// Controles do Espaço 1 (Com setas e sem botão voltar)
-const interativosCena = document.querySelectorAll(".interativo-cena");
+// Elementos principais da cena
+var cena = document.getElementById("cena");
+var setaEsq = document.getElementById("esq");
+var setaDir = document.getElementById("dir");
+var portas = document.querySelectorAll(".porta");
+var interativosCena = document.querySelectorAll(".interativo-cena");
+var interativosZoom = document.querySelectorAll(".interativo-zoom");
 
-// Controles do Espaço 2 (Sem setas e com botão voltar)
-const interativosZoom = document.querySelectorAll(".interativo-zoom");
-const zoomTela = document.getElementById("zoom-objeto");
-const btnFecharZoom = document.getElementById("fechar-zoom");
-const itensZoom = document.querySelectorAll(".item-zoom");
+// Elementos da tela de zoom
+var zoomTela = document.getElementById("zoom-objeto");
+var btnFecharZoom = document.getElementById("fechar-zoom");
+var itensZoom = document.querySelectorAll(".item-zoom, [data-no-zoom]");
 
+// Variavel usada por outros scripts para saber se a geladeira ja foi aberta
+var geladeiraDestravada = false;
+
+// Guarda a funcao que vai rodar depois do fade da cena
+var acaoPendenteTransicao = null;
+
+// Atualiza imagem da cena e visibilidade dos botoes da vista atual
 function desenhar() {
-  const vistaBase = estado.comodo + "-" + estado.vista;
+  var vistaBase = estado.comodo + "-" + estado.vista;
+  var vistaAtiva = vistasAlteradas[vistaBase] || vistaBase;
 
-  // Mostra a vista alterada se houver, senão mostra a vista normal
-  cena.dataset.vista = vistasAlteradas[vistaBase] || vistaBase;
+  cena.dataset.vista = vistaAtiva;
 
-  // As setas só somem se o cômodo tiver 1 vista (banheiro)
-  const semGiro = comodos[estado.comodo].vistas === 1;
+  // Em comodos de 1 vista (como o banheiro), nao precisa mostrar setas de girar
+  var semGiro = comodos[estado.comodo].vistas === 1;
   setaEsq.hidden = semGiro;
   setaDir.hidden = semGiro;
 
-  portas.forEach(porta => {
-    porta.hidden = porta.dataset.aqui !== vistaBase;
-  });
+  // Mostra apenas as portas que pertencem a essa vista base
+  for (var i = 0; i < portas.length; i++) {
+    portas[i].hidden = portas[i].dataset.aqui !== vistaBase;
+  }
 
-  interativosCena.forEach(item => {
-    item.hidden = item.dataset.aqui !== vistaBase;
-  });
+  // Mostra apenas os objetos que alteram a cena nessa vista base
+  for (var j = 0; j < interativosCena.length; j++) {
+    interativosCena[j].hidden = interativosCena[j].dataset.aqui !== vistaBase;
+  }
 
-  interativosZoom.forEach(item => {
-    item.hidden = item.dataset.aqui !== vistaBase;
-  });
+  // Mostra apenas os objetos que abrem zoom nessa vista base
+  for (var k = 0; k < interativosZoom.length; k++) {
+    interativosZoom[k].hidden = interativosZoom[k].dataset.aqui !== vistaBase;
+  }
 
-  // Atualiza quais itens espalhados aparecem nesta vista
+  // Atualiza itens coletaveis soltos na cena
   if (typeof atualizarItensVisiveis === "function") {
-    atualizarItensVisiveis(vistaBase);
+    atualizarItensVisiveis(vistaAtiva);
   }
 }
 
+// Abre a tela de zoom de um objeto
 function abrirZoom(nomeZoom) {
+  // Se a geladeira ja foi destravada, abre ela ja aberta
+  if (nomeZoom === "geladeira" && geladeiraDestravada) {
+    nomeZoom = "geladeira-aberta";
+  }
+
   zoomTela.dataset.zoom = nomeZoom;
   zoomTela.hidden = false;
-  itensZoom.forEach(item => {
-    item.hidden = item.dataset.noZoom !== nomeZoom;
-  });
+
+  // Mostra apenas os itens ou paineis que pertencem a esse zoom
+  for (var i = 0; i < itensZoom.length; i++) {
+    itensZoom[i].hidden = itensZoom[i].dataset.noZoom !== nomeZoom;
+  }
+
+  // Se abriu o painel de senha da geladeira, limpa textos anteriores
+  if (nomeZoom === "geladeira" && typeof prepararSenhaGeladeira === "function") {
+    prepararSenhaGeladeira();
+  }
 }
 
+// Fecha a tela de zoom
 function fecharZoom() {
   zoomTela.hidden = true;
   delete zoomTela.dataset.zoom;
 }
 
-function transicao(mudar) {
-  fecharZoom();
-  cena.classList.add("fade");
-  setTimeout(() => {
-    mudar();
-    desenhar();
-    cena.classList.remove("fade");
-  }, 200);
+// Finaliza a mudanca de cena apos o tempo de fade
+function concluirTransicao() {
+  if (typeof acaoPendenteTransicao === "function") {
+    acaoPendenteTransicao();
+    acaoPendenteTransicao = null;
+  }
+
+  desenhar();
+  cena.classList.remove("fade");
 }
 
+// Faz uma transicao suave ao trocar de vista ou comodo
+function transicao(mudar) {
+  fecharZoom();
+  acaoPendenteTransicao = mudar;
+  cena.classList.add("fade");
+  setTimeout(concluirTransicao, 200);
+}
+
+// Gira a camera para esquerda (-1) ou direita (1)
 function girar(direcao) {
-  if (!zoomTela.hidden) return;
-  const total = comodos[estado.comodo].vistas;
-  transicao(() => {
+  if (!zoomTela.hidden) {
+    return;
+  }
+
+  var total = comodos[estado.comodo].vistas;
+  transicao(function () {
     estado.vista = (estado.vista + direcao + total) % total;
   });
 }
 
+// Vai direto para um comodo e vista especificos
 function irPara(comodo, vista) {
-  transicao(() => {
+  transicao(function () {
     estado.comodo = comodo;
     estado.vista = vista;
   });
 }
 
-setaEsq.addEventListener("click", () => girar(-1));
-setaDir.addEventListener("click", () => girar(1));
+// Alterna entre a vista normal e a vista alterada do objeto clicado
+function clicarInterativoCena() {
+  var vistaBase = this.dataset.aqui;
+  var vistaAlt = this.dataset.alterado;
 
-document.addEventListener("keydown", e => {
+  if (vistasAlteradas[vistaBase] === vistaAlt) {
+    delete vistasAlteradas[vistaBase];
+  } else {
+    vistasAlteradas[vistaBase] = vistaAlt;
+  }
+
+  desenhar();
+}
+
+// Abre o zoom do objeto clicado
+function clicarInterativoZoom() {
+  abrirZoom(this.dataset.zoom);
+}
+
+// Botoes de girar e fechar zoom
+setaEsq.onclick = function () {
+  girar(-1);
+};
+
+setaDir.onclick = function () {
+  girar(1);
+};
+
+btnFecharZoom.onclick = fecharZoom;
+
+// Liga os eventos dos objetos de cena e de zoom
+for (var i = 0; i < interativosCena.length; i++) {
+  interativosCena[i].onclick = clicarInterativoCena;
+}
+
+for (var j = 0; j < interativosZoom.length; j++) {
+  interativosZoom[j].onclick = clicarInterativoZoom;
+}
+
+// Atalhos do teclado: H para debug, Esc para fechar zoom e setas para girar
+document.onkeydown = function (e) {
   if (e.key.toLowerCase() === "h") {
     cena.classList.toggle("debug");
   }
+
   if (e.key === "Escape" && !zoomTela.hidden) {
     fecharZoom();
   }
-  if (comodos[estado.comodo].vistas === 1) return;
-  if (e.key === "ArrowLeft") girar(-1);
-  if (e.key === "ArrowRight") girar(1);
-});
 
-portas.forEach(porta => {
-  porta.addEventListener("click", () => {
-    const destino = porta.dataset.para;
-    const corte = destino.lastIndexOf("-");
-    const comodo = destino.slice(0, corte);
-    const vista = Number(destino.slice(corte + 1));
-    irPara(comodo, vista);
-  });
-});
+  if (comodos[estado.comodo].vistas === 1) {
+    return;
+  }
 
-interativosCena.forEach(item => {
-  item.addEventListener("click", () => {
-    const vistaBase = item.dataset.aqui;
-    const vistaAlt = item.dataset.alterado;
+  if (e.key === "ArrowLeft") {
+    girar(-1);
+  }
 
-    if (vistasAlteradas[vistaBase] === vistaAlt) {
-      delete vistasAlteradas[vistaBase];
-    } else {
-      vistasAlteradas[vistaBase] = vistaAlt;
-    }
+  if (e.key === "ArrowRight") {
+    girar(1);
+  }
+};
 
-    desenhar();
-  });
-});
-
-interativosZoom.forEach(item => {
-  item.addEventListener("click", () => {
-    abrirZoom(item.dataset.zoom);
-  });
-});
-
-btnFecharZoom.addEventListener("click", fecharZoom);
-
+// Renderizacao inicial do jogo
 desenhar();
