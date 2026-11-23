@@ -153,3 +153,24 @@ if (btnConfirmarSenha) {
 
 // Garante que as portas fiquem visiveis/escondidas corretamente ao carregar
 desenhar();
+
+
+// Alarme despertador do quarto (liga e desliga ao clicar)
+var btnDespertador = document.getElementById("despertadorbarulhento");
+var somDespertador = new Audio("../assets/video/alarme.mp3");
+
+// Alterna entre tocar e pausar o som do despertador
+function alternarSomDespertador() {
+  if (somDespertador.paused) {
+    somDespertador.currentTime = 0;
+    somDespertador.play();
+  } else {
+    somDespertador.pause();
+    somDespertador.currentTime = 0;
+  }
+}
+
+// Liga o evento no botao do despertador
+if (btnDespertador) {
+  btnDespertador.onclick = alternarSomDespertador;
+}
