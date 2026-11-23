@@ -1,11 +1,19 @@
-let tempoRestante = 5 * 60; // 5 minutos (300 segundos)
-const displayCronometro = document.getElementById("cronometro");
-let intervaloCronometro = null;
+var tempoRestante = 5 * 60; // 5 minutos (300 segundos)
+var displayCronometro = document.getElementById("cronometro");
+var intervaloCronometro = null;
 
 function formatarTempo(segundos) {
-  const min = String(Math.floor(segundos / 60)).padStart(2, "0");
-  const seg = String(segundos % 60).padStart(2, "0");
-  return `${min}:${seg}`;
+  var min = String(Math.floor(segundos / 60));
+  var seg = String(segundos % 60);
+
+  if (min.length < 2) {
+    min = "0" + min;
+  }
+  if (seg.length < 2) {
+    seg = "0" + seg;
+  }
+
+  return min + ":" + seg;
 }
 
 function atualizarCronometro() {
@@ -29,18 +37,13 @@ function atualizarCronometro() {
 }
 
 function iniciarCronometro() {
-  if (intervaloCronometro) return;
+  if (intervaloCronometro) {
+    return;
+  }
+
   atualizarCronometro();
   intervaloCronometro = setInterval(atualizarCronometro, 1000);
 }
 
-// Mostra 05:00 ao carregar o mapa
-if (displayCronometro) {
-  displayCronometro.innerText = formatarTempo(tempoRestante);
-}
-
-// Inicia automaticamente quando vier do "Jogue agora" (?start=1)
-const params = new URLSearchParams(window.location.search);
-if (params.get("start") === "1") {
-  iniciarCronometro();
-}
+// Inicia o cronômetro assim que a página carrega
+iniciarCronometro();

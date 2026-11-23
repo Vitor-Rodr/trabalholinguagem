@@ -70,16 +70,33 @@ function clicarFrango() {
   abrirBuracoMesa();
 }
 
-// Abre o buraco na mesa usando o Pe de Cabra e remove o item do inventario
+// Abre o buraco na mesa usando o Pe de Cabra
 function abrirBuracoMesa() {
   if (buracoAberto) {
     return;
   }
 
   buracoAberto = true;
-  removerItem("Pé de Cabra");
   escreverStatus("Voce usou o Pe de Cabra e abriu um buraco na mesa!", "#a6e3a1");
 
   // Troca o zoom do frango pelo zoom da mesa com buraco
   abrirZoom("buraco");
+}
+
+// Clique no frango (dentro do zoom): precisa do Pe de Cabra para abrir o buraco
+function clicarFrango() {
+  if (!temItem("Pé de Cabra")) {
+    escreverStatus("Parece so um frango assado... talvez uma ferramenta ajude.", "#f9e2af");
+    return;
+  }
+
+  abrirBuracoMesa();
+}
+
+// Clique no buraco (dentro do zoom): consome o Pe de Cabra e desce para a prisao
+function entrarNoBuraco() {
+  fecharZoom();
+  removerItem("Pé de Cabra");
+  escreverStatus("Voce desceu pelo buraco da mesa...", "#89b4fa");
+  irPara("prisao", 0);
 }

@@ -45,6 +45,9 @@
     <button class="interativo-cena" id="espelhobanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-espelho"></button>
     <button class="interativo-cena" id="cortinabanheiro" data-aqui="banheiro-0" data-alterado="banheiro-0-cortina"></button>
 
+    <!-- Resgata as crianças na prisão, envia para o inventário e troca para a cena vazia -->
+    <button class="interativo-cena" id="criancasresgatadas" data-aqui="prisao-0" data-alterado="prisao-0-vazia" data-item="Crianças" data-imagem="../assets/images/cenarioobj/criancapng.png"></button>
+
     <!-- Engrenagem 1 aparece na cena assim que a cortina do banheiro abre -->
     <button class="item-cenario" id="pegar-engrenagem1-banheiro" data-aqui="banheiro-0-cortina" hidden onclick="pegarItem(this, 'Engrenagem 1', '../assets/images/cenarioobj/image7.png')">
       <img src="../assets/images/cenarioobj/image7.png" alt="Engrenagem 1">
@@ -70,7 +73,6 @@
     <button class="interativo-zoom" id="fornofechado" data-aqui="cozinha-0" data-zoom="forno"></button>
     <button class="interativo-zoom" id="geladeirasenha" data-aqui="cozinha-1" data-zoom="geladeira"></button>
     <button class="interativo-zoom" id="frangomesa" data-aqui="salaJantar-2" data-zoom="frango"></button>
-
 
     <!-- Camada de zoom -->
     <div id="zoom-objeto" hidden>
