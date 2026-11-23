@@ -16,20 +16,24 @@ function formatarTempo(segundos) {
   return min + ":" + seg;
 }
 
+function pararCronometro() {
+  if (intervaloCronometro) {
+    clearInterval(intervaloCronometro);
+    intervaloCronometro = null;
+  }
+}
+
 function atualizarCronometro() {
   if (displayCronometro) {
     displayCronometro.innerText = formatarTempo(tempoRestante);
   }
 
   if (tempoRestante <= 0) {
-    clearInterval(intervaloCronometro);
+    pararCronometro();
 
-    if (typeof escreverStatus === "function") {
-      escreverStatus("O tempo acabou! Você perdeu.", "#f38ba8");
+    if (typeof mostrarTelaFinal === "function") {
+      mostrarTelaFinal("voceperdeu.png", "O tempo acabou! Você perdeu.", "#f38ba8");
     }
-
-    alert("O tempo acabou! Você perdeu.");
-    location.reload();
     return;
   }
 
