@@ -128,7 +128,7 @@ body {
 #cena[data-vista="quarto-0-armario"] { background-image: url("../assets/images/cenarioobj/image9.png"); }
 
 #quadroinutil { left: 12%; top: 15%; width: 22%; height: 26%; }
-#cena[data-vista="quarto-0-quadro"] { background-image: url("../assets/images/cenarioobj/image40.png"); }
+#cena[data-vista="quarto-0-quadro"] { background-image: url("../assets/images/cenarioobj/cenaquartopedecabra.png"); }
 
 #despertadorbarulhento { left: 53%; top: 50%; width: 6%; height: 11%; }
 #cena[data-vista="quarto-0-despertador"] { background-image: url("../assets/images/cenarioobj/image15.png"); }
@@ -194,6 +194,7 @@ body {
 #computadorazul { left: 53.5%; top: 32%; width: 15.5%; height: 26%; }
 #fornofechado { left: 20%; top: 61%; width: 15.5%; height: 19%; }
 #geladeirasenha { left: 46.5%; top: 43%; width: 7.5%; height: 19%; }
+#frangomesa { left: 46.5%; top: 43%; width: 7.5%; height: 19%; }
 
 #zoom-objeto {
   position: absolute;
@@ -213,16 +214,18 @@ body {
 #zoom-objeto[data-zoom="quadro3"] { background-image: url("../assets/images/cenarioobj/image32.jpg"); }
 #zoom-objeto[data-zoom="quadro4"] { background-image: url("../assets/images/cenarioobj/image11.jpg"); }
 #zoom-objeto[data-zoom="quadro5"] { background-image: url("../assets/images/cenarioobj/image41.jpg"); }
-#zoom-objeto[data-zoom="caneca"] { background-image: url("../assets/images/cenarioobj/image35.png"); }
+#zoom-objeto[data-zoom="caneca"] { background-image: url("../assets/images/cenarioobj/canecanova.jpg"); }
 #zoom-objeto[data-zoom="computador"] { background-image: url("../assets/images/cenarioobj/pccomdica.webp"); }
 #zoom-objeto[data-zoom="forno"] { background-image: url("../assets/images/cenarioobj/image16.jpg"); }
-#zoom-objeto[data-zoom="geladeira"] { background-image: url("../assets/images/cenarioobj/image25.jpg"); }
+#zoom-objeto[data-zoom="geladeira"] { background-image: url("../assets/images/cenarioobj/geladeiranova.jpg"); }
 #zoom-objeto[data-zoom="geladeira-aberta"] { background-image: url("../assets/images/cenarioobj/geladeira.jpg"); }
+#zoom-objeto[data-zoom="frango"] { background-image: url("../assets/images/cenarioobj/frangomesa.png"); }
 
 /* Itens clicáveis dentro dos zooms */
 #pegar-chave-gaveta { left: 40%; top: 38%; width: 22%; height: 22%; }
 #pegar-engrenagem3-caixa { left: 40%; top: 40%; width: 20%; height: 20%; }
 #pegar-engrenagem2congelada { left: 40%; top: 27%; width: 20%; height: 20%; }
+#pegar-pedecabra {  left: 16%;  top: 20%; width: 14%; height: 16%; }
 
 .item-zoom img {
   width: 100%;
