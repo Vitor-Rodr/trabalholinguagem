@@ -1,6 +1,7 @@
+// Lista de anotações já registradas no diário (cada item tem id, titulo e texto)
 var anotacoesDiario = [];
 
-// Adiciona uma anotação sem repetir
+// Registra uma nova anotação apenas se ainda não existir uma com o mesmo id
 function registrarNoDiario(id, titulo, texto) {
   for (var i = 0; i < anotacoesDiario.length; i++) {
     if (anotacoesDiario[i].id === id) {
@@ -18,39 +19,40 @@ function registrarNoDiario(id, titulo, texto) {
   destacarBotaoDiario();
 }
 
-// Atualiza o contador e escreve as anotações em cima da imagem
+// Atualiza o contador do botão e monta a lista de anotações na tela
 function atualizarRenderDiario() {
   var lista = document.getElementById("lista-anotacoes");
   var btnAbrir = document.getElementById("btn-abrir-diario");
 
   if (btnAbrir) {
-    btnAbrir.innerText = `Diário (${anotacoesDiario.length})`;
+    btnAbrir.innerText = "Diário (" + anotacoesDiario.length + ")";
   }
 
   if (!lista) {
     return;
   }
 
+  // Mensagem padrão quando o jogador ainda não encontrou pistas
   if (anotacoesDiario.length === 0) {
-    lista.innerHTML = `<p class="diario-vazio">Nenhuma pista anotada ainda...</p>`;
+    lista.innerHTML = '<p class="diario-vazio">Nenhuma pista anotada ainda...</p>';
     return;
   }
 
   var htmlFinal = "";
 
+  // Monta cada cartão de anotação em ordem
   for (var i = 0; i < anotacoesDiario.length; i++) {
-    htmlFinal += `
-      <div class="item-anotacao">
-        <h3>${i + 1}. ${anotacoesDiario[i].titulo}</h3>
-        <p>${anotacoesDiario[i].texto}</p>
-      </div>
-    `;
+    htmlFinal +=
+      '<div class="item-anotacao">' +
+      "<h3>" + (i + 1) + ". " + anotacoesDiario[i].titulo + "</h3>" +
+      "<p>" + anotacoesDiario[i].texto + "</p>" +
+      "</div>";
   }
 
   lista.innerHTML = htmlFinal;
 }
 
-// Destaca o botão do diário por 1.5s quando uma anotação nova entra
+// Aplica o destaque visual no botão do diário por 1.5s ao entrar pista nova
 function destacarBotaoDiario() {
   var btnAbrir = document.getElementById("btn-abrir-diario");
   if (!btnAbrir) {
@@ -59,17 +61,17 @@ function destacarBotaoDiario() {
 
   btnAbrir.className = "nova-pista";
 
-  setTimeout(function() {
+  setTimeout(function () {
     btnAbrir.className = "";
   }, 1500);
 }
 
-// Observa os zooms abertos pelo jogador sem alterar o funcionamento deles
+// Registra pistas relevantes quando o jogador abre certos zooms
 function observarZoomParaDiario(tipoZoom) {
   if (tipoZoom === "bilhete") {
     registrarNoDiario("bilhete", "Bilhete na Parede", "Mostra a ordem dos números para o enigma.");
   } else if (tipoZoom === "casaco") {
-    registrarNoDiario("casaco", "Pista no Casaco", "Encontrei uma anotação escondida no casaco do hall.");
+    registrarNoDiario("casaco", "Pista no Casaco", "Há uma anotação escondida no casaco do hall.");
   } else if (
     tipoZoom === "quadro1" ||
     tipoZoom === "quadro2" ||
@@ -77,25 +79,21 @@ function observarZoomParaDiario(tipoZoom) {
     tipoZoom === "quadro4" ||
     tipoZoom === "quadro5"
   ) {
-    registrarNoDiario("quadros", "Quadros do Quarto", "Os quadros na parede trazem pistas para a senha.");
+    registrarNoDiario("quadros", "Quadros do Quarto", "Os quadros trazem pistas relacionadas à senha.");
   } else if (tipoZoom === "caneca") {
-    registrarNoDiario("caneca", "Caneca na Mesa", "Há uma pista na caneca próxima ao computador.");
+    registrarNoDiario("caneca", "Caneca na Mesa", "Existe uma dica na caneca perto do computador.");
   } else if (tipoZoom === "computador") {
-    registrarNoDiario("computador", "Computador do Quarto", "A tela do computador exibe uma dica importante.");
+    registrarNoDiario("computador", "Computador do Quarto", "A tela exibe uma dica importante.");
   } else if (tipoZoom === "forno") {
-    registrarNoDiario("forno", "Forno da Cozinha", "O forno está quente e pode descongelar algo.");
+    registrarNoDiario("forno", "Forno da Cozinha", "Pode servir para descongelar algo.");
   } else if (tipoZoom === "geladeira") {
-    registrarNoDiario("geladeira", "Geladeira Trancada", "Exige uma senha numérica de 7 dígitos.");
-  } else if (tipoZoom === "geladeira-aberta") {
-    registrarNoDiario("geladeira-aberta", "Geladeira Aberta", "Consegui abrir a geladeira com a senha.");
-  } else if (tipoZoom === "frango") {
-    registrarNoDiario("frango", "Frango na Mesa", "Há um frango enorme no centro da mesa de jantar.");
+    registrarNoDiario("geladeira", "Geladeira Trancada", "Pede uma senha numérica de 7 dígitos.");
   } else if (tipoZoom === "buraco") {
-    registrarNoDiario("buraco", "Passagem na Mesa", "Um buraco se abriu no lugar do frango na mesa.");
+    registrarNoDiario("buraco", "Buraco na Mesa", "Abriu uma passagem para baixo da mesa de jantar.");
   }
 }
 
-// Observa os itens que entram no inventário
+// Registra os itens importantes coletados no inventário
 function observarInventarioParaDiario() {
   if (typeof inventario === "undefined") {
     return;
@@ -105,73 +103,81 @@ function observarInventarioParaDiario() {
     var nome = inventario[i].nome;
 
     if (nome === "Chave do Chão") {
-      registrarNoDiario("chave-chao", "Chave do Chão", "Peguei uma chave caída no quarto.");
+      registrarNoDiario("chave-chao", "Chave do Chão", "Peguei a chave no quarto para abrir a cozinha.");
     } else if (nome === "Chave da Gaveta") {
-      registrarNoDiario("chave-gaveta", "Chave da Gaveta", "Encontrei uma chave dentro da gaveta do hall.");
+      registrarNoDiario("chave-gaveta", "Chave da Gaveta", "Peguei a chave na gaveta para abrir o calabouço.");
     } else if (nome === "Pé de Cabra") {
-      registrarNoDiario("pe-de-cabra", "Pé de Cabra", "Peguei um pé de cabra atrás do quadro no quarto.");
+      registrarNoDiario("pe-de-cabra", "Pé de Cabra", "Encontrei atrás do quadro; pode ajudar a abrir algo.");
     } else if (nome === "Engrenagem 1") {
-      registrarNoDiario("engrenagem-1", "Engrenagem 1", "Encontrei a primeira engrenagem no banheiro.");
+      registrarNoDiario("engrenagem-1", "Engrenagem 1", "Coletada no banheiro.");
     } else if (nome === "Engrenagem 2 Congelada") {
-      registrarNoDiario("engrenagem-2-gelo", "Engrenagem 2 Congelada", "Peguei uma engrenagem presa no gelo dentro da geladeira.");
+      registrarNoDiario("engrenagem-2-gelo", "Engrenagem 2 Congelada", "Está presa no gelo; preciso descongelar.");
     } else if (nome === "Engrenagem 2") {
-      registrarNoDiario("engrenagem-2", "Engrenagem 2 Descongelada", "Descongelei a segunda engrenagem no forno.");
+      registrarNoDiario("engrenagem-2", "Engrenagem 2", "Descongelada e pronta para a saída.");
     } else if (nome === "Engrenagem 3") {
-      registrarNoDiario("engrenagem-3", "Engrenagem 3", "Encontrei a terceira engrenagem na caixa do hall.");
+      registrarNoDiario("engrenagem-3", "Engrenagem 3", "Coletada na caixa do hall.");
     } else if (nome === "Crianças") {
-      registrarNoDiario("criancas", "Crianças Resgatadas", "Resgatei as crianças que estavam presas no cativeiro!");
+      registrarNoDiario("criancas", "Crianças Resgatadas", "Resgatei as crianças no cativeiro.");
     }
   }
 }
 
-// Observa a entrada em novos cômodos
+// Registra apenas a descoberta do cativeiro (as outras salas já ficam óbvias ao entrar)
 function observarComodoParaDiario(comodo) {
-  if (comodo === "cozinha") {
-    registrarNoDiario("comodo-cozinha", "Cozinha", "Consegui destrancar a porta e entrar na cozinha.");
-  } else if (comodo === "prisao") {
-    registrarNoDiario("comodo-prisao", "Cativeiro", "Desci pelo buraco da mesa e encontrei uma sala de prisão.");
-  } else if (comodo === "calabouco") {
-    registrarNoDiario("comodo-calabouco", "Calabouço", "Abri a passagem para o calabouço onde fica a saída.");
+  if (comodo === "prisao") {
+    registrarNoDiario("comodo-prisao", "Cativeiro", "Encontrei uma sala de prisão descendo pelo buraco.");
   }
 }
 
-// Conecta o diário às funções existentes sem alterar o funcionamento delas
+// Gancho em abrirZoom para anotar pistas sem alterar a função original
 if (typeof window.abrirZoom === "function") {
   var abrirZoomOriginal = window.abrirZoom;
-  window.abrirZoom = function(tipoZoom) {
+  window.abrirZoom = function (tipoZoom) {
     abrirZoomOriginal.apply(this, arguments);
     observarZoomParaDiario(tipoZoom);
   };
 }
 
+// Gancho em renderizarInventario para anotar novos itens coletados
 if (typeof window.renderizarInventario === "function") {
   var renderizarInventarioOriginal = window.renderizarInventario;
-  window.renderizarInventario = function() {
+  window.renderizarInventario = function () {
     renderizarInventarioOriginal.apply(this, arguments);
     observarInventarioParaDiario();
   };
 }
 
+// Gancho em irPara para observar mudanças de cômodo
 if (typeof window.irPara === "function") {
   var irParaOriginal = window.irPara;
-  window.irPara = function(comodo, vista) {
+  window.irPara = function (comodo, vista) {
     irParaOriginal.apply(this, arguments);
     observarComodoParaDiario(comodo);
   };
 }
 
-// Abre e fecha o diário ao clicar nos botões dele
+// Alterna a visibilidade do modal do diário ao clicar no botão
+function alternarModalDiario() {
+  var modal = document.getElementById("modal-diario");
+  if (modal) {
+    modal.hidden = !modal.hidden;
+  }
+}
+
+// Fecha o modal do diário ao clicar no botão de fechar
+function fecharModalDiario() {
+  var modal = document.getElementById("modal-diario");
+  if (modal) {
+    modal.hidden = true;
+  }
+}
+
 var btnAbrirDiario = document.getElementById("btn-abrir-diario");
 if (btnAbrirDiario) {
-  btnAbrirDiario.onclick = function() {
-    var modal = document.getElementById("modal-diario");
-    modal.hidden = !modal.hidden;
-  };
+  btnAbrirDiario.onclick = alternarModalDiario;
 }
 
 var btnFecharDiario = document.getElementById("btn-fechar-diario");
 if (btnFecharDiario) {
-  btnFecharDiario.onclick = function() {
-    document.getElementById("modal-diario").hidden = true;
-  };
+  btnFecharDiario.onclick = fecharModalDiario;
 }

@@ -43,18 +43,19 @@ function removerItem(nomeItem) {
 function pegarItem(botaoClicado, nomeItem, caminhoImagem) {
   var imagemLimpa = (caminhoImagem || "").trim();
 
-  // Evita pegar duas vezes o mesmo botao
+  // Impede coletar o mesmo botao mais de uma vez
   if (botaoClicado && botaoClicado.getAttribute("data-coletado") === "true") {
     escreverStatus("Voce ja pegou este item.", "#f9e2af");
     return false;
   }
 
-  // Bloqueia coleta quando atingir o limite de 6 itens
+  // Bloqueia coleta caso o limite de 6 slots ja tenha sido atingido
   if (inventario.length >= LIMITE_INVENTARIO) {
     escreverStatus("Inventario cheio! Nao cabe mais nada.", "#f38ba8");
     return false;
   }
 
+  // So adiciona se ainda nao existir um item com esse mesmo nome
   if (!temItem(nomeItem)) {
     inventario.push({
       nome: nomeItem,
@@ -84,6 +85,7 @@ function renderizarInventario() {
   var contador = document.getElementById("contador-slots");
   var htmlGerado = "";
 
+  // Cria um slot visual para cada item guardado
   for (var i = 0; i < inventario.length; i++) {
     var item = inventario[i];
 
@@ -94,6 +96,11 @@ function renderizarInventario() {
       '</div>';
   }
 
-  containerInventario.innerHTML = htmlGerado;
-  contador.innerText = inventario.length;
+  if (containerInventario) {
+    containerInventario.innerHTML = htmlGerado;
+  }
+
+  if (contador) {
+    contador.innerText = inventario.length;
+  }
 }

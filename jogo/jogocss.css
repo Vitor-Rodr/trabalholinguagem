@@ -1,12 +1,14 @@
-/* Reset básico e regra do atributo hidden */
+/* Reset básico da página */
 * {
   box-sizing: border-box;
 }
 
+/* Esconde elementos com o atributo hidden */
 [hidden] {
   display: none !important;
 }
 
+/* Fundo geral e centralização do jogo */
 body {
   margin: 0;
   min-height: 100vh;
@@ -14,14 +16,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   background: #111;
   color: #cdd6f4;
   padding: 20px;
+  font-family: sans-serif;
 }
 
-/* ========================================== */
-/* CRONÔMETRO                                 */
-/* ========================================== */
+/* Cronômetro no canto superior direito */
 #cronometro {
   position: fixed;
   top: 14px;
@@ -33,28 +35,33 @@ body {
   font-family: monospace;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #fff;
   z-index: 20;
 }
 
-/* ========================================== */
-/* CENA E NAVEGAÇÃO                           */
-/* ========================================== */
+/* Enquadramento de fundo da cena e do zoom */
+#cena,
+#zoom-objeto {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Área principal do cenário */
 #cena {
   position: relative;
   width: min(100%, 960px);
   aspect-ratio: 16 / 9;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
   transition: opacity 0.2s;
 }
 
+/* Fade ao trocar de vista ou cômodo */
 #cena.fade {
   opacity: 0;
 }
 
+/* Estilo base das setas de girar a câmera */
 .seta {
   position: absolute;
   top: 50%;
@@ -62,29 +69,29 @@ body {
   width: 40px;
   height: 40px;
   border: 0;
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: transparent center / contain no-repeat;
   cursor: pointer;
   z-index: 2;
 }
 
+/* Leve destaque ao passar o mouse nas setas */
 .seta:hover {
   filter: brightness(1.3);
 }
 
+/* Seta esquerda */
 #esq {
   left: 10px;
   background-image: url("../assets/images/setaesquerda.png");
 }
 
+/* Seta direita */
 #dir {
   right: 10px;
   background-image: url("../assets/images/setadireita.png");
 }
 
-/* Base para áreas clicáveis invisíveis */
+/* Áreas clicáveis invisíveis sobre a tela */
 .porta,
 .interativo-cena,
 .interativo-zoom,
@@ -96,11 +103,12 @@ body {
   cursor: pointer;
 }
 
+/* Mantém portas acima de outros botões na cena */
 .porta {
   z-index: 2;
 }
 
-/* Portas */
+/* Posição das portas entre os cômodos */
 #porta-hall-quarto { left: 79%; top: 20%; width: 13%; height: 60%; }
 #porta-quarto-hall { left: 47%; top: 20%; width: 21%; height: 60%; }
 #porta-quarto-banheiro { left: 40%; top: 20%; width: 18%; height: 60%; }
@@ -111,83 +119,78 @@ body {
 #porta-salaJantar-cozinha { left: 40%; top: 20%; width: 20%; height: 60%; }
 #porta-salaJantar-calabouco { left: 78%; top: 20%; width: 13%; height: 60%; }
 #porta-calabouco-salaJantar { left: 20%; top: 20%; width: 20%; height: 60%; }
-
-/* Fechadura dourada na grade direita do calabouço */
 #porta-final-escape { left: 65%; top: 18%; width: 20%; height: 62%; }
-
-/* Saída provisória da sala de prisão de volta para a sala de jantar */
 #porta-prisao-salaJantar { left: 78%; top: 20%; width: 15%; height: 60%; }
 
-/* ========================================== */
-/* INTERATIVOS DE CENA                        */
-/* ========================================== */
+/* Tapete do hall */
 #tapetevirado { left: 30%; top: 80%; width: 40%; height: 20%; }
 #cena[data-vista="hall-0-tapete"] { background-image: url("../assets/images/cenarioobj/image17.jpg"); }
 
+/* Gaveta do hall */
 #gavetainutil { left: 22%; top: 70%; width: 9%; height: 5%; }
 #cena[data-vista="hall-0-inutil"] { background-image: url("../assets/images/cenarioobj/image3.jpg"); }
 
+/* Armário do quarto */
 #armarioinutil { left: 78%; top: 15%; width: 19%; height: 68%; }
 #cena[data-vista="quarto-0-armario"] { background-image: url("../assets/images/cenarioobj/image9.png"); }
 
+/* Quadro do quarto */
 #quadroinutil { left: 12%; top: 15%; width: 22%; height: 26%; }
 #cena[data-vista="quarto-0-quadro"] { background-image: url("../assets/images/cenarioobj/cenaquartopedecabra.png"); }
 
+/* Despertador do quarto */
 #despertadorbarulhento { left: 53%; top: 50%; width: 6%; height: 11%; }
 #cena[data-vista="quarto-0-despertador"] { background-image: url("../assets/images/cenarioobj/image15.png"); }
 
+/* Pano da chave no quarto */
 #chavepano { left: 7%; top: 88%; width: 11%; height: 9%; }
 #cena[data-vista="quarto-0-chave"] { background-image: url("../assets/images/cenarioobj/quartosemchave.jpg"); }
 
+/* Armário do banheiro */
 #armariobanheiro { left: 26%; top: 53%; width: 25%; height: 28%; }
 #cena[data-vista="banheiro-0-armario"] { background-image: url("../assets/images/cenarioobj/image21.png"); }
 
+/* Espelho do banheiro */
 #espelhobanheiro { left: 30.5%; top: 15.5%; width: 16%; height: 27%; }
 #cena[data-vista="banheiro-0-espelho"] { background-image: url("../assets/images/cenarioobj/image23.png"); }
 
+/* Cortina do banheiro */
 #cortinabanheiro { left: 77%; top: 5%; width: 15%; height: 65%; }
 #cena[data-vista="banheiro-0-cortina"] { background-image: url("../assets/images/cenarioobj/banheirosemengrenagem.jpg"); }
 
-/* Crianças na prisão -> ao clicar, vão para o inventário e trocam para a cena vazia */
+/* Crianças na prisão */
 #criancasresgatadas { left: 9%; top: 53%; width: 22%; height: 24%; }
 #cena[data-vista="prisao-0-vazia"] { background-image: url("../assets/images/cenarioobj/prisaosolitaria.png"); }
 
-/* ========================================== */
-/* ITENS COLETÁVEIS NA CENA                   */
-/* ========================================== */
+/* Itens coletáveis soltos na cena */
 .item-cenario {
   position: absolute;
-  background: transparent;
-  border: none;
+  border: 0;
   padding: 0;
+  background: transparent;
   cursor: pointer;
   z-index: 3;
-  transition: transform 0.15s, filter 0.15s;
+  transition: transform 0.15s;
 }
 
+/* Aumenta um pouco o item ao passar o mouse */
 .item-cenario:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 6px #f9e2af);
 }
 
-.item-cenario img {
+/* Ajuste das imagens dentro dos itens */
+.item-cenario img,
+.item-zoom img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
 }
 
-/* Ajuste left/top/width/height conforme o ponto exato da engrenagem na cena */
-#pegar-engrenagem1-banheiro {
-  left: 78%;
-  top: 45%;
-  width: 10%;
-  height: 12%;
-}
+/* Engrenagem 1 no banheiro */
+#pegar-engrenagem1-banheiro { left: 78%; top: 45%; width: 10%; height: 12%; }
 
-/* ========================================== */
-/* INTERATIVOS DE ZOOM E CAMADA DE ZOOM       */
-/* ========================================== */
+/* Áreas que abrem tela de zoom */
 #gavetameio { left: 22%; top: 64%; width: 9%; height: 5%; }
 #bilhetequadro { left: 63%; top: 30%; width: 10%; height: 11%; }
 #bilhetecasaco { left: 27%; top: 40%; width: 5%; height: 6%; }
@@ -203,15 +206,14 @@ body {
 #geladeirasenha { left: 46.5%; top: 43%; width: 7.5%; height: 19%; }
 #frangomesa { left: 46.5%; top: 43%; width: 7.5%; height: 19%; }
 
+/* Camada sobreposta de zoom */
 #zoom-objeto {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   z-index: 10;
 }
 
+/* Imagens de fundo de cada zoom */
 #zoom-objeto[data-zoom="gaveta"] { background-image: url("../assets/images/cenarioobj/gavetavazia.jpg"); }
 #zoom-objeto[data-zoom="bilhete"] { background-image: url("../assets/images/cenarioobj/ordemnumero.jpg"); }
 #zoom-objeto[data-zoom="casaco"] { background-image: url("../assets/images/cenarioobj/image33.png"); }
@@ -229,97 +231,92 @@ body {
 #zoom-objeto[data-zoom="frango"] { background-image: url("../assets/images/cenarioobj/frangomesa.png"); }
 #zoom-objeto[data-zoom="buraco"] { background-image: url("../assets/images/cenarioobj/buracomesa.png"); }
 
-/* Itens clicáveis dentro dos zooms */
+/* Itens clicáveis dentro do zoom */
 #pegar-chave-gaveta { left: 40%; top: 38%; width: 22%; height: 22%; }
 #pegar-engrenagem3-caixa { left: 40%; top: 40%; width: 20%; height: 20%; }
 #pegar-engrenagem2congelada { left: 40%; top: 27%; width: 20%; height: 20%; }
 #pegar-pedecabra { left: 16%; top: 20%; width: 14%; height: 16%; }
 
-/* Áreas clicáveis do zoom do frango e do buraco da mesa */
+/* Frango e buraco da mesa no zoom */
 #frango-clicavel { left: 28%; top: 20%; width: 48%; height: 45%; }
 #buraco-entrada { left: 36%; top: 40%; width: 26%; height: 40%; }
 
-.item-zoom img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
+/* Botão para fechar o zoom */
 #fechar-zoom {
   position: absolute;
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 20px;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border: 2px solid #fff;
   border-radius: 6px;
-  font-family: sans-serif;
   font-weight: bold;
   cursor: pointer;
   z-index: 11;
 }
 
+/* Inverte as cores do botão fechar zoom no hover */
 #fechar-zoom:hover {
   background: #fff;
   color: #000;
 }
 
-/* ========================================== */
-/* CENÁRIOS PRINCIPAIS                        */
-/* ========================================== */
+/* Vistas do hall */
 #cena[data-vista="hall-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 1.1.png"); }
 #cena[data-vista="hall-1"] { background-image: url("../assets/images/cenarioobj/image13.jpg"); }
 #cena[data-vista="hall-2"] { background-image: url("../assets/images/cenarioobj/image20.jpg"); }
 
+/* Vistas do quarto */
 #cena[data-vista="quarto-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.1.png"); }
 #cena[data-vista="quarto-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.2.png"); }
 #cena[data-vista="quarto-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.3.png"); }
 #cena[data-vista="quarto-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 2.4.png"); }
 
+/* Vista do banheiro */
 #cena[data-vista="banheiro-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 3.png"); }
 
+/* Vistas da cozinha */
 #cena[data-vista="cozinha-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.1.png"); }
 #cena[data-vista="cozinha-1"] { background-image: url("../assets/images/cenarioobj/image22.jpg"); }
 #cena[data-vista="cozinha-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.3.png"); }
 #cena[data-vista="cozinha-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 4.4.png"); }
 
+/* Vistas da sala de jantar */
 #cena[data-vista="salaJantar-0"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.4.png"); }
 #cena[data-vista="salaJantar-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.2.png"); }
 #cena[data-vista="salaJantar-2"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.1.png"); }
 #cena[data-vista="salaJantar-3"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 5.3.png"); }
 
+/* Vistas do calabouço */
 #cena[data-vista="calabouco-0"] { background-image: url("../assets/images/cenarios-jogo/Imagem\ 6.1.png"); }
 #cena[data-vista="calabouco-1"] { background-image: url("../assets/images/cenarios-jogo/imagem\ 6.2.jpg"); }
 
-/* Sala de prisão */
+/* Vista da prisão */
 #cena[data-vista="prisao-0"] { background-image: url("../assets/images/cenarioobj/cativeiroimensinhos.png"); }
 
-/* ========================================== */
-/* INVENTÁRIO E STATUS                        */
-/* ========================================== */
+/* Caixa do inventário */
 .painel-inventario {
-  background-color: rgb(2, 14, 22);
-  border: 2px solid rgb(3, 45, 99);
+  background: #020e16;
+  border: 2px solid #032d63;
   border-radius: 8px;
   padding: 12px 20px;
-  margin-top: 15px;
   width: min(100%, 960px);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Título do inventário */
 .painel-inventario h3 {
   margin: 0;
   font-size: 1rem;
   white-space: nowrap;
 }
 
+/* Linha onde ficam os quadradinhos dos itens */
 .grade-inventario {
   display: flex;
   gap: 10px;
@@ -329,8 +326,9 @@ body {
   justify-content: center;
 }
 
+/* Cada slot de item no inventário */
 .slot-item {
-  background-color: #181825;
+  background: #181825;
   border: 2px solid #585b70;
   border-radius: 6px;
   width: 68px;
@@ -342,20 +340,21 @@ body {
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.1s;
 }
 
+/* Borda ao passar o mouse no slot */
 .slot-item:hover {
   border-color: #89b4fa;
-  transform: translateY(-2px);
 }
 
+/* Ícone dentro do slot */
 .slot-item img {
   width: 36px;
   height: 36px;
   object-fit: contain;
 }
 
+/* Nome curto do item no slot */
 .slot-item span {
   font-size: 0.65rem;
   margin-top: 4px;
@@ -365,18 +364,16 @@ body {
   max-width: 100%;
 }
 
+/* Mensagem de status abaixo do inventário */
 .status {
-  margin-top: 10px;
+  margin: 0;
   color: #a6e3a1;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.9rem;
   min-height: 20px;
   text-align: center;
 }
 
-/* ========================================== */
-/* PAINEL DE SENHA DA GELADEIRA               */
-/* ========================================== */
+/* Caixa central da senha da geladeira */
 #senha-geladeira {
   position: absolute;
   left: 50%;
@@ -393,14 +390,21 @@ body {
   z-index: 12;
 }
 
-.titulo-senha {
+/* Texto do título e aviso da senha */
+.titulo-senha,
+#aviso-senha-geladeira {
   margin: 0;
   font-size: 0.85rem;
-  color: #ffffff;
-  font-family: sans-serif;
-  font-weight: bold;
+  color: #fff;
 }
 
+/* Espaço reservado para mensagem de erro ou acerto */
+#aviso-senha-geladeira {
+  font-size: 0.8rem;
+  min-height: 16px;
+}
+
+/* Campo de digitação da senha */
 #input-senha-geladeira {
   width: 150px;
   padding: 6px 10px;
@@ -408,46 +412,33 @@ body {
   letter-spacing: 4px;
   text-align: center;
   background: #181825;
-  color: #ffffff;
+  color: #fff;
   border: 1px solid #585b70;
   border-radius: 4px;
 }
 
+/* Linha dos botões confirmar e limpar */
 .botoes-senha {
   display: flex;
   gap: 8px;
 }
 
+/* Estilo base dos botões da senha */
 #btn-confirmar-senha,
 #btn-limpar-senha {
   padding: 6px 12px;
-  border: none;
+  border: 0;
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
-  font-family: sans-serif;
+  color: #fff;
 }
 
-#btn-confirmar-senha {
-  background: #ff4655;
-  color: #ffffff;
-}
+/* Cores de cada botão da senha */
+#btn-confirmar-senha { background: #ff4655; }
+#btn-limpar-senha { background: #313244; }
 
-#btn-limpar-senha {
-  background: #313244;
-  color: #ffffff;
-}
-
-#aviso-senha-geladeira {
-  margin: 0;
-  font-size: 0.8rem;
-  min-height: 16px;
-  font-family: sans-serif;
-}
-
-/* ========================================== */
-/* TELA FINAL (DERROTA / VITÓRIA)             */
-/* ========================================== */
+/* Tela cheia de vitória ou derrota */
 #tela-final {
   position: fixed;
   inset: 0;
@@ -461,6 +452,7 @@ body {
   z-index: 30;
 }
 
+/* Imagem exibida na tela final */
 #imagem-final {
   max-width: min(92vw, 900px);
   max-height: 75vh;
@@ -468,26 +460,25 @@ body {
   border-radius: 8px;
 }
 
+/* Botão para voltar ao site inicial */
 #btn-voltar-site {
   padding: 10px 24px;
   background: #ff4655;
-  color: #ffffff;
-  border: 2px solid #ffffff;
+  color: #fff;
+  border: 2px solid #fff;
   border-radius: 6px;
-  font-family: sans-serif;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
 }
 
+/* Destaque do botão voltar ao site */
 #btn-voltar-site:hover {
-  background: #ffffff;
-  color: #111111;
+  background: #fff;
+  color: #111;
 }
 
-/* ========================================== */
-/* MODO DEBUG (TECLA H)                       */
-/* ========================================== */
+/* Destaca áreas clicáveis quando o modo debug (tecla H) está ativo */
 #cena.debug .porta { background: rgba(255, 0, 0, 0.35); border: 2px dashed red; }
 #cena.debug .interativo-cena { background: rgba(0, 255, 0, 0.35); border: 2px dashed lime; }
 #cena.debug .interativo-zoom { background: rgba(255, 200, 0, 0.4); border: 2px dashed orange; }

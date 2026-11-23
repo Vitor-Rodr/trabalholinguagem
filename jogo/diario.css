@@ -1,111 +1,88 @@
-/* Botão no topo esquerdo */
+/* Botão fixo que abre o diário */
 #btn-abrir-diario {
   position: fixed;
   top: 14px;
   left: 18px;
-  background: rgba(17, 17, 17, 0.9);
+  padding: 6px 14px;
+  background: #181825;
+  color: #f9e2af;
   border: 2px solid #f9e2af;
   border-radius: 6px;
-  padding: 6px 14px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 0.95rem;
+  font-family: sans-serif;
   font-weight: bold;
-  color: #f9e2af;
   cursor: pointer;
-  z-index: 30;
-  transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
+  z-index: 20;
 }
 
-#btn-abrir-diario:hover {
-  background: #252536;
-  transform: translateY(-1px);
-}
-
+/* Destaque do botão quando chega pista nova */
 #btn-abrir-diario.nova-pista {
   background: #f9e2af;
-  color: #111111;
-  box-shadow: 0 0 12px rgba(249, 226, 175, 0.85);
+  color: #111;
 }
 
-/* Janela flutuante com a imagem do diário (não cobre a tela inteira) */
+/* Janela flutuante com a imagem do diário */
 #modal-diario {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(88vw, 580px);
-  aspect-ratio: 4 / 3; /* Ajuste conforme a proporção da sua imagem */
-  background-image: url("../assets/images/diarioaberto.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  z-index: 25;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.85));
+  aspect-ratio: 4 / 3;
+  background: url("../assets/images/diarioaberto.png") center / 100% 100% no-repeat;
+  z-index: 21;
 }
 
-/* Botão fechar no canto da imagem */
+/* Botão circular para fechar o diário */
 #btn-fechar-diario {
   position: absolute;
   top: 6%;
   right: 6%;
-  background: rgba(43, 29, 14, 0.85);
-  border: 1px solid #2b1d0e;
-  border-radius: 50%;
-  color: #f4ebd9;
-  font-weight: bold;
   width: 28px;
   height: 28px;
+  background: #2b1d0e;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  font-weight: bold;
   cursor: pointer;
-  z-index: 26;
 }
 
-#btn-fechar-diario:hover {
-  background: #ff4655;
-  border-color: #ff4655;
-}
-
-/* Área interna onde o texto fica escrito por cima da imagem */
+/* Área de texto dentro das páginas do diário */
 .diario-area-escrita {
   width: 100%;
   height: 100%;
-  padding: 12% 14% 12% 14%;
-  display: flex;
-  flex-direction: column;
+  padding: 12% 14%;
   color: #2b1d0e;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: Georgia, serif;
 }
 
+/* Título principal dentro do diário */
 .diario-titulo {
-  margin: 0 0 8px 0;
-  font-size: 1.15rem;
-  border-bottom: 1px solid rgba(43, 29, 14, 0.35);
-  padding-bottom: 4px;
+  margin: 0 0 8px;
+  font-size: 1.1rem;
 }
 
+/* Lista com rolagem das anotações */
 #lista-anotacoes {
+  max-height: 75%;
   overflow-y: auto;
-  flex: 1;
-  padding-right: 6px;
 }
 
-.diario-vazio {
-  font-style: italic;
-  opacity: 0.75;
-  font-size: 0.9rem;
-}
-
+/* Bloco de cada anotação individual */
 .item-anotacao {
-  border-bottom: 1px dashed rgba(43, 29, 14, 0.3);
-  padding: 6px 0;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #2b1d0e;
 }
 
+/* Título de cada anotação */
 .item-anotacao h3 {
-  margin: 0 0 2px 0;
+  margin: 0 0 2px;
   font-size: 0.95rem;
-  color: #4a1c12;
 }
 
+/* Texto de cada anotação */
 .item-anotacao p {
   margin: 0;
   font-size: 0.85rem;
-  line-height: 1.35;
 }

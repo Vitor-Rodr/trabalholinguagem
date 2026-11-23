@@ -19,12 +19,11 @@ function inspecionarItem(indice) {
     return;
   }
 
-  // Verifica se o zoom do forno esta aberto no momento
   var zoomAtual = document.getElementById("zoom-objeto");
-  var noForno = zoomAtual && !zoomAtual.hidden && zoomAtual.dataset.zoom === "forno";
+  var zoomAberto = zoomAtual && !zoomAtual.hidden;
 
   // Enigma do forno: descongelar a Engrenagem 2 ao clicar nela com o forno aberto
-  if (item.nome === "Engrenagem 2 Congelada" && noForno) {
+  if (item.nome === "Engrenagem 2 Congelada" && zoomAberto && zoomAtual.dataset.zoom === "forno") {
     inventario[indice] = {
       nome: "Engrenagem 2",
       imagem: "../assets/images/cenarioobj/engrenagem2.png"
@@ -36,9 +35,7 @@ function inspecionarItem(indice) {
   }
 
   // Enigma do frango: usar o Pe de Cabra com o zoom do frango aberto
-  var noFrango = zoomAtual && !zoomAtual.hidden && zoomAtual.dataset.zoom === "frango";
-
-  if (item.nome === "Pé de Cabra" && noFrango) {
+  if (item.nome === "Pé de Cabra" && zoomAberto && zoomAtual.dataset.zoom === "frango") {
     abrirBuracoMesa();
     return;
   }
@@ -47,7 +44,7 @@ function inspecionarItem(indice) {
   escreverStatus("Item selecionado: " + item.nome, "#89b4fa");
 }
 
-// Abre o buraco na mesa usando o Pe de Cabra
+// Abre o buraco na mesa usando o Pe de Cabra e troca para a cena do buraco
 function abrirBuracoMesa() {
   if (buracoAberto) {
     return;
@@ -55,35 +52,10 @@ function abrirBuracoMesa() {
 
   buracoAberto = true;
   escreverStatus("Voce usou o Pe de Cabra e abriu um buraco na mesa!", "#a6e3a1");
-
-  // Troca o zoom do frango pelo zoom da mesa com buraco
   abrirZoom("buraco");
 }
 
-// Clique no frango (dentro do zoom): precisa do Pe de Cabra para abrir o buraco
-function clicarFrango() {
-  if (!temItem("Pé de Cabra")) {
-    escreverStatus("Parece so um frango assado... talvez uma ferramenta ajude.", "#f9e2af");
-    return;
-  }
-
-  abrirBuracoMesa();
-}
-
-// Abre o buraco na mesa usando o Pe de Cabra
-function abrirBuracoMesa() {
-  if (buracoAberto) {
-    return;
-  }
-
-  buracoAberto = true;
-  escreverStatus("Voce usou o Pe de Cabra e abriu um buraco na mesa!", "#a6e3a1");
-
-  // Troca o zoom do frango pelo zoom da mesa com buraco
-  abrirZoom("buraco");
-}
-
-// Clique no frango (dentro do zoom): precisa do Pe de Cabra para abrir o buraco
+// Clique no frango (dentro do zoom): exige o Pe de Cabra para abrir o buraco
 function clicarFrango() {
   if (!temItem("Pé de Cabra")) {
     escreverStatus("Parece so um frango assado... talvez uma ferramenta ajude.", "#f9e2af");

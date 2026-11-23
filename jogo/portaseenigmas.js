@@ -3,7 +3,7 @@ var cozinhaDestravada = false;
 var calaboucoDestravada = false;
 var venceuJogo = false;
 
-// Senha de 7 digitos da geladeira
+// Senha de 7 digitos da geladeira e elementos do painel na tela
 var SENHA_GELADEIRA = "9117108";
 var inputSenhaGeladeira = document.getElementById("input-senha-geladeira");
 var btnConfirmarSenha = document.getElementById("btn-confirmar-senha");
@@ -20,8 +20,14 @@ function mostrarTelaFinal(nomeImagem, textoStatus, corStatus) {
   var telaFinal = document.getElementById("tela-final");
   var imgFinal = document.getElementById("imagem-final");
 
+  // Para o cronometro e silencia o despertador se estiver tocando
   if (typeof pararCronometro === "function") {
     pararCronometro();
+  }
+
+  if (typeof somDespertador !== "undefined" && somDespertador && !somDespertador.paused) {
+    somDespertador.pause();
+    somDespertador.currentTime = 0;
   }
 
   if (typeof escreverStatus === "function" && textoStatus) {
@@ -76,7 +82,7 @@ function clicarPorta() {
     escreverStatus("Voce usou a Chave da Gaveta e abriu a porta!", "#a6e3a1");
   }
 
-  // Fechadura dourada exige as 3 engrenagens e define o final com ou sem criancas
+  // Fechadura dourada exige as 3 engrenagens e escolhe o final com ou sem criancas
   if (this.id === "porta-final-escape") {
     if (!temTresEngrenagens()) {
       escreverStatus("A fechadura dourada esta travada! Colete as 3 engrenagens para escapar.", "#f38ba8");
@@ -107,7 +113,7 @@ function clicarPorta() {
     return;
   }
 
-  // Passagem normal para o comodo e vista configurados na porta
+  // Separa o comodo e o numero da vista a partir de "data-para" (ex.: "quarto-0")
   var destino = this.dataset.para;
   if (!destino) {
     return;
@@ -166,7 +172,7 @@ function teclaNaSenha(e) {
   }
 }
 
-// Limpa o campo de senha e o aviso
+// Limpa o campo de senha, o aviso e devolve o foco ao input
 function limparSenhaGeladeira() {
   inputSenhaGeladeira.value = "";
   avisoSenhaGeladeira.innerText = "";
