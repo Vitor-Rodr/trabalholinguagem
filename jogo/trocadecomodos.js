@@ -5,7 +5,8 @@ var comodos = {
   banheiro:   { vistas: 1 },
   cozinha:    { vistas: 4 },
   salaJantar: { vistas: 4 },
-  calabouco:  { vistas: 2 }
+  calabouco:  { vistas: 2 },
+  prisao:     { vistas: 1 }
 };
 
 // Posicao inicial do jogador ao entrar no jogo
@@ -32,6 +33,9 @@ var itensZoom = document.querySelectorAll(".item-zoom, [data-no-zoom]");
 
 // Variavel usada por outros scripts para saber se a geladeira ja foi aberta
 var geladeiraDestravada = false;
+
+// Fica true depois que o Pe de Cabra abre o buraco na mesa da sala de jantar
+var buracoAberto = false;
 
 // Guarda para onde o jogador vai quando o fade da cena terminar
 var destinoPendente = null;
@@ -74,6 +78,11 @@ function abrirZoom(nomeZoom) {
   // Se a geladeira ja foi destravada, abre ela ja aberta
   if (nomeZoom === "geladeira" && geladeiraDestravada) {
     nomeZoom = "geladeira-aberta";
+  }
+
+  // Se o buraco da mesa ja foi aberto, o frango abre ja com o buraco
+  if (nomeZoom === "frango" && buracoAberto) {
+    nomeZoom = "buraco";
   }
 
   zoomTela.dataset.zoom = nomeZoom;

@@ -28,6 +28,9 @@
     <button class="porta" id="porta-salaJantar-calabouco" data-aqui="salaJantar-2" data-para="calabouco-0"></button>
     <button class="porta" id="porta-calabouco-salaJantar" data-aqui="calabouco-1" data-para="salaJantar-2"></button>
 
+    <!-- Saída provisória da sala de prisão (volta para a sala de jantar) -->
+    <button class="porta" id="porta-prisao-salaJantar" data-aqui="prisao-0" data-para="salaJantar-2" aria-label="Voltar para a sala de jantar"></button>
+
     <!-- Fechadura dourada na grade do calabouço -->
     <button class="porta" id="porta-final-escape" data-aqui="calabouco-0" aria-label="Fechadura dourada"></button>
 
@@ -85,6 +88,12 @@
       <button class="item-zoom" id="pegar-engrenagem2congelada" data-no-zoom="geladeira-aberta" onclick="pegarItem(this, 'Engrenagem 2 Congelada', '../assets/images/cenarioobj/engrenagem2congelada.png')">
         <img src="../assets/images/cenarioobj/engrenagem2congelada.png" alt="Engrenagem 2 Congelada">
       </button>
+
+      <!-- Frango da mesa: com o Pé de Cabra, abre o buraco na mesa -->
+      <button class="item-zoom" id="frango-clicavel" data-no-zoom="frango" aria-label="Frango" onclick="clicarFrango()"></button>
+
+      <!-- Buraco da mesa: leva para a sala de prisão -->
+      <button class="item-zoom" id="buraco-entrada" data-no-zoom="buraco" aria-label="Buraco na mesa" onclick="entrarNoBuraco()"></button>
 
       <!-- Painel de senha da geladeira -->
       <div id="senha-geladeira" data-no-zoom="geladeira">
